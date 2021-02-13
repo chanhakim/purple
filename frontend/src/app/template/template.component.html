@@ -1,33 +1,42 @@
-<div class="template-form">
-    <form [formGroup]="emailForm" (ngSubmit)="onSubmit()">
-        <div for="to-field">
-            To:
-            <input id="to-field" type="text" formControlName="to" />
-        </div>
-        <div for="from-field">
-            From:
-            <input id="from-field" type="text" formControlName="from" />
-        </div>
-        <div for="subj-field">
-            Subject:
-            <input id="subj-field" type="text" formControlName="subj" />
-        </div>
-        <div for="message-field">
-            <div id="message-desc">
-                Message:
+<div class="template-form-container">
+    <div class="template-form-wrapper">
+        <!-- <div class="template-form"> -->
+        <form class="template-form" [formGroup]="emailForm" (ngSubmit)="onSubmit()">
+            <span class="template-form-title">Draft Email</span>
+            <div class="form-el-wrapper form-el-half bg0" for="from-field">
+                <span class="form-el-title">From:</span>
+                <input class="form-el" id="from-field" type="text" formControlName="from" />
             </div>
-            <textarea id="message-field" formControlName="message">
-                Put your message here
-            </textarea>
+            <div class="form-el-wrapper form-el-half bg0" for="to-field">
+                <span class="form-el-title">To:</span>
+                <input class="form-el" id="to-field" type="text" formControlName="to" />
+            </div>
+            <div class="form-el-wrapper bg0" for=" subj-field">
+                <span class="form-el-title">Subject:</span>
+                <input class="form-el" id="subj-field" type="text" formControlName="subj" />
+            </div>
+            <div class="form-el-wrapper bg0" for="message-field">
+                <div class="form-el-title" id="message-desc">
+                    Message:
+                </div>
+                <textarea class="message-input" id="message-field" formControlName="message">
+                    Put your message here
+                </textarea>
+            </div>
+            <div class="submit-form-btn-container">
+                <button class="button submit-form-btn" type="submut">Send</button>
+            </div>
+
+        </form>
+        <div *ngIf="status != exportStatus.NONE">
+            <div *ngIf="status == exportStatus.SUCCESS">
+                Success!
+            </div>
+            <div *ngIf="status == exportStatus.FAILURE">
+                {{ error_msg }}
+            </div>
         </div>
-        <button class="button" type="submut">Send</button>
-    </form>
-    <div *ngIf="status != exportStatus.NONE">
-        <div *ngIf="status == exportStatus.SUCCESS">
-            Success!
-        </div>
-        <div *ngIf="status == exportStatus.FAILURE">
-            {{ error_msg }}
-        </div>
+        <!-- </div> -->
     </div>
+
 </div>
