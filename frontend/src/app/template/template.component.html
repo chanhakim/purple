@@ -23,7 +23,7 @@
                 <app-template-editor [val]="emailForm.value.message"></app-template-editor>
             </div>
             <div class="flex justify-center">
-                <button class="purple-btn" type="submit">Send</button>
+                <button class="purple-btn" type="submit">Generate</button>
                 <div *ngIf="status != exportStatus.NONE">
                     <div *ngIf="status == exportStatus.SUCCESS">
                         Success!
