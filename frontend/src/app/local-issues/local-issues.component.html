@@ -1,1 +1,16 @@
-<p>local-issues works!</p>
+<div class="app-local-issues-div">
+    <h1 id="title">
+        News Articles
+    </h1>
+    <div id="news_div" *ngIf="news_articles_vals !== null">
+        <div *ngFor="let article of news_articles_vals">
+            <h3 id="news-article-header">
+                <!-- {{ article.headline }} -->
+                <a href="{{ article.link }}">{{ article.headline }}</a>
+            </h3>
+            <div id="news-article-body">
+                {{ article.body }}
+            </div>
+        </div>
+    </div>
+</div>

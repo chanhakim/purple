@@ -1,0 +1,15 @@
+{
+    "elected_officials": {
+        "hello": {
+            "role": "cool",
+            "email": "darling@gmal",
+            "zip_codes": ["15213"]
+        }
+    },
+    "newstories": {
+        "1": {"headline": "Florida Man", "body": "Drives while high", "zip_code": ["15213"], "link": "http://localhost"},
+        "2": {"headline": "Florida Man", "body": "Drives while high", "zip_code": ["15213"], "link": "http://localhost"},
+        "3": {"headline": "Florida Man", "body": "Drives while high", "zip_code": ["15213"], "link": "http://localhost"},
+        "4": {"headline": "Florida Man", "body": "Drives while high", "zip_code": ["15213"], "link": "http://localhost"}
+    }
+}

@@ -41,7 +41,7 @@ params: start_issue: int, n_issues: int, filter_keyword: str
         },
     ],
     "newstories": {
-        "id": int(unique): {
+        "id": str(unique): {
             "headline": str,
             "body": str,
             "zip_code": array[str],

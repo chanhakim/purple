@@ -3,6 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
 import { EStatus, IResponse } from '../models/status';
+import { ITemplateData } from '../models/template-data';
 
 @Component({
   selector: 'app-template',
@@ -32,7 +33,17 @@ export class TemplateComponent implements OnInit {
 
   onSubmit(): void {
     console.log(this.emailForm.value);
-    this.http.post<IResponse>(this.url, JSON.stringify(this.emailForm.value))
+    var val = this.emailForm.value;
+    var templateClass: ITemplateData = {
+      template_id: 1,
+      elected_officials: null,
+      to: val.to,
+      from: val.from,
+      subject: val.subj,
+      body: val.message
+    }
+
+    this.http.post<IResponse>(this.url, JSON.stringify(templateClass))
       .subscribe((data) => {
         this.status = data.success ? EStatus.SUCCESS : EStatus.FAILURE;
         this.error_msg = data.error_msg;
