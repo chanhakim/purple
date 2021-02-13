@@ -4,6 +4,7 @@
 ```
 POST
 {
+    "template_id": int,
     "elected_officials": [
         "name": {
             "role": str,
@@ -39,14 +40,14 @@ params: start_issue: int, n_issues: int, filter_keyword: str
             "zip_codes": array[str]
         },
     ],
-    "newstories": [
-        {
+    "newstories": {
+        "id": int(unique): {
             "headline": str,
             "body": str,
             "zip_code": array[str],
             "link": str[url]
         }
-    ]
+    }
 }
 ```
 
