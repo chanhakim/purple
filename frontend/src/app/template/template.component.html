@@ -1,7 +1,9 @@
 <div class="flex justify-center items-center">
     <div class="container rounded bg-gray-100 max-w-screen-md shadow-lg mx-8">
         <form class="p-2 grid grid-cols-1 sm:grid-cols-2 gap-2" [formGroup]="emailForm" (ngSubmit)="onSubmit()">
-            <span class="sm:col-span-2">Draft Email</span>
+            <div class="sm:col-span-2 flex justify-center">
+                <span class="text-2xl font-bold">Draft Email</span>
+            </div>
             <div class="bg-white rounded px-2" for="from-field">
                 <span class="text-sm">From:</span>
                 <input class="w-full" id="from-field" type="text" formControlName="from"
@@ -21,15 +23,15 @@
                 <div class="text-sm" id="message-desc">
                     Message:
                 </div>
-                <textarea class="w-full h-72 min-text-height" id="message-field" formControlName="message"
+                <textarea class="min-ta-height w-full" id="message-field" formControlName="message"
                     placeholder="Put your message here...">
                 </textarea>
             </div>
             <div class="flex justify-center">
-                <button class="bg-purple-400 rounded-full px-2" type="submut">Send</button>
+                <button class="purple-btn" type="submut">Send</button>
             </div>
             <div class="flex justify-center">
-                <button class="bg-purple-400 rounded-full px-2" (click)="router.navigate(['/local-issues'])">
+                <button class="purple-btn" (click)="router.navigate(['/local-issues'])">
                     Go Back to News
                 </button>
             </div>
