@@ -1,2 +1,2 @@
 # purple
-treehacks 21: civic engagement challenge
+2021 Stanford TreeHacks Entry into the Civic Engagement Challenge
