@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +15,8 @@ import { LocalIssuesRoutingModule } from './local-issues/local-issues-routing.co
 import { ZipCodeComponent } from './zip-code/zip-code.component';
 import { ZipCodeRoutingModule } from './zip-code/zip-code-routing.component';
 import { appReducers } from './store/reducers/app.reducers';
+import { TemplateEditorComponent } from './template/template-editor/template-editor.component';
+import { RenderTemplateComponent } from './render-template/render-template.component';
 
 
 @NgModule({
@@ -21,7 +24,9 @@ import { appReducers } from './store/reducers/app.reducers';
     AppComponent,
     TemplateComponent,
     LocalIssuesComponent,
-    ZipCodeComponent
+    ZipCodeComponent,
+    TemplateEditorComponent,
+    RenderTemplateComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +38,7 @@ import { appReducers } from './store/reducers/app.reducers';
     TemplateRoutingModule,
     LocalIssuesRoutingModule,
     StoreModule.forRoot(appReducers),
+    AngularEditorModule,
     // StoreDevtoolsModule.instrument(),
   ],
   providers: [],

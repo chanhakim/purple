@@ -30,12 +30,13 @@ export class ZipCodeComponent implements OnInit {
   onSubmit(): void {
     console.log(this.zipForm.value);
     
-    this.http.post<IResponse>(this.url, JSON.stringify(this.zipForm.value))
-      .subscribe((data) => {
-        this.status = data.success ? EStatus.SUCCESS : EStatus.FAILURE;
-        if (this.status == EStatus.SUCCESS) {
-          this.router.navigate(['/local-issues']);
-        }
-      })
+    // this.http.post<IResponse>(this.url, JSON.stringify(this.zipForm.value))
+    //   .subscribe((data) => {
+    //     this.status = data.success ? EStatus.SUCCESS : EStatus.FAILURE;
+    //     if (this.status == EStatus.SUCCESS) {
+    //       this.router.navigate(['/local-issues']);
+    //     }
+    //   })
+    this.router.navigate(['/local-issues']);
   }
 }

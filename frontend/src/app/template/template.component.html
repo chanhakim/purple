@@ -19,31 +19,26 @@
                 <input class="w-full" id="subj-field" type="text" formControlName="subj"
                     placeholder="Give your message a headline here." />
             </div>
-            <div class="sm:col-span-2 bg-white w-full rounded px-2" for="message-field">
-                <div class="text-sm" id="message-desc">
-                    Message:
-                </div>
-                <textarea class="min-ta-height w-full" id="message-field" formControlName="message"
-                    placeholder="Put your message here...">
-                </textarea>
+            <div class="sm:col-span-2 bg-white rounded p-2">
+                <app-template-editor [val]="emailForm.value.message"></app-template-editor>
             </div>
             <div class="flex justify-center">
-                <button class="purple-btn" type="submut">Send</button>
-            </div>
-            <div class="flex justify-center">
-                <button class="purple-btn" (click)="router.navigate(['/local-issues'])">
+                <button class="purple-btn w-full" (click)="backToNews()">
                     Go Back to News
                 </button>
             </div>
+            <div class="flex justify-center">
+                <button class="purple-btn w-full" type="submit">Send</button>
+                <div *ngIf="status != exportStatus.NONE">
+                    <div *ngIf="status == exportStatus.SUCCESS">
+                        Success!
+                    </div>
+                    <div *ngIf="status == exportStatus.FAILURE">
+                        {{ error_msg }}
+                    </div>
+                </div>
+            </div>
         </form>
-        <div *ngIf="status != exportStatus.NONE">
-            <div *ngIf="status == exportStatus.SUCCESS">
-                Success!
-            </div>
-            <div *ngIf="status == exportStatus.FAILURE">
-                {{ error_msg }}
-            </div>
-        </div>
-    </div>
 
+    </div>
 </div>

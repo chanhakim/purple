@@ -6,4 +6,14 @@
     .min-ta-height{
         min-height: 24em;
     }
+
+}
+
+@media (max-width: 576px) {
+    .wrap-contact100 {
+        padding: 62px 15px 90px 15px;
+    }
+    .wrap-input100 {
+        padding: 10px 10px 9px 10px;
+    }
 }
