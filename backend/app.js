@@ -182,3 +182,87 @@ app.post("/api/zip_codes", function(req, res) {
     });
 });
 // curl -d '{"33647": ["Kathy Castor", "Marco Rubio"]}' -H 'Content-Type: application/json' http://127.0.0.1:3000/api/zip_codes
+
+/**
+ * GET request for templates
+ */
+app.get("/api/templates", function (req, res) {
+  db.collection('templates').get()
+  .then((snapshot) => {
+    // console.log(snapshot.data());
+    res.status(200).json(getDocuments(snapshot));
+  })
+  .catch((error) => {
+    res.status(500).send(error);
+    handleError(res, error.message, "Failed to get templates.");
+  });
+});
+
+/**
+ * POST request for templates
+ */
+app.post("/api/templates", function(req, res) {
+  var template_to_be_added = req.body;
+  if (!req.body.template_id || !req.body.body || !req.body.to || !req.body.from || !req.body.subject) {
+    handleError(res, "Invalid user input", "Must provide an ID, subject, body, to, and from.", 400);
+  } else {
+    db.collection('templates').doc(template_to_be_added.template_id).set(template_to_be_added, {merge: true})
+      .then(success => {
+        res.status(201).json({
+          success: true,
+          message: "Template successfully added.",
+        })
+      }, rejection => {
+        res.status(500).json({
+          success: false,
+          message: "Template failed to be added.",
+        })
+      })
+      .catch(error => {
+        res.status(500).send(error);
+        handleError(res, error.message, "Failed to post template.")
+      });
+  }
+});
+// curl -d '{"subject": "subject", "to": ["email3","email2"],"from":"email3","body":"bodyhtml","template_id":"123"}' -H 'Content-Type: application/json' http://127.0.0.1:3000/api/templates
+
+/**
+ * GET request for a single template
+ */
+app.get("/api/single_template/:id", function(req, res) {
+
+  if (!req.params.id) {
+    handleError(res, "Invalid user input", "Must provide an ID.", 400);
+  } else{
+    console.log(req.params.id);
+    db.collection('templates').doc(req.params.id).get()
+      .then((snapshot) => {
+        res.status(200).json(snapshot.data());
+      })
+      .catch((error) => {
+      res.status(500).send(error);
+      handleError(res, error.message, "Failed to get template.");
+      });
+    }
+});
+
+/**
+ * GET request for a set of news
+ */
+app.get("/api/news/:from-:to", function(req, res) {
+
+  if (!req.params.from || !req.params.to) {
+    handleError(res, "Invalid user input", "Must provide a start and end.", 400);
+  } else{
+    db.collection('news_stories').orderBy('date').limit(req.params.to-req.params.from).get()
+      .then((snapshot) => {
+        console.log(req.params.from +" "+req.params.to);
+        res.status(200).json(getDocuments(snapshot));
+
+      })
+      .catch((error) => {
+      res.status(500).send(error);
+      handleError(res, error.message, "Failed to get template.");
+      });
+    }
+});

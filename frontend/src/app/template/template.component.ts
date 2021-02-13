@@ -93,6 +93,7 @@ export class TemplateComponent implements OnInit {
 
   backToNews() {
     var val = this.emailForm.value;
+    console.log(this.editor.htmlContent)
     this.store.dispatch(new UpdateTemplate(
       {
         subject: val.subj,

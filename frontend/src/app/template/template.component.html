@@ -1,47 +1,44 @@
-<div class="template-form-container">
-    <div class="template-form-wrapper">
-        <!-- <div class="template-form"> -->
-        <form class="template-form" [formGroup]="emailForm" (ngSubmit)="onSubmit()">
-            <span class="template-form-title">Draft Email</span>
-            <div class="form-el-wrapper form-el-half bg0" for="from-field">
-                <span class="form-el-title">From:</span>
-                <input class="form-el" id="from-field" type="text" formControlName="from" />
+<div class="flex justify-center items-center">
+    <div class="container rounded bg-gray-100 max-w-screen-md shadow-lg mx-8">
+        <form class="p-2 grid grid-cols-1 sm:grid-cols-2 gap-2" [formGroup]="emailForm" (ngSubmit)="onSubmit()">
+            <div class="sm:col-span-2 flex justify-center">
+                <span class="text-2xl font-bold">Draft Email</span>
             </div>
-            <div class="form-el-wrapper form-el-half bg0" for="to-field">
-                <span class="form-el-title">To:</span>
-                <input class="form-el" id="to-field" type="text" formControlName="to" />
+            <div class="bg-white rounded px-2" for="from-field">
+                <span class="text-sm">From:</span>
+                <input class="w-full" id="from-field" type="text" formControlName="from"
+                    placeholder="Enter your email here." />
             </div>
-            <div class="form-el-wrapper bg0" for=" subj-field">
-                <span class="form-el-title">Subject:</span>
-                <input class="form-el" id="subj-field" type="text" formControlName="subj" />
+            <div class="bg-white rounded px-2" for="to-field">
+                <span class="text-sm">To:</span>
+                <input class="w-full" id="to-field" type="text" formControlName="to"
+                    placeholder="Senator contact info." />
             </div>
-            <!-- <div class="form-el-wrapper bg0" for="message-field">
-                <div class="form-el-title" id="message-desc">
-                    Message:
+            <div class="sm:col-span-2 bg-white rounded px-2" for=" subj-field">
+                <span class="text-sm">Subject:</span>
+                <input class="w-full" id="subj-field" type="text" formControlName="subj"
+                    placeholder="Give your message a headline here." />
+            </div>
+            <div>
+                <app-template-editor [val]="emailForm.value.message"></app-template-editor>
+            </div>
+            <div class="flex justify-center">
+                <button class="purple-btn" type="submit">Send</button>
+                <div *ngIf="status != exportStatus.NONE">
+                    <div *ngIf="status == exportStatus.SUCCESS">
+                        Success!
+                    </div>
+                    <div *ngIf="status == exportStatus.FAILURE">
+                        {{ error_msg }}
+                    </div>
                 </div>
-                <textarea class="message-input" id="message-field" formControlName="message">
-                    Put your message here
-                </textarea>
-            </div> -->
-            <app-template-editor [val]="emailForm.value.message"></app-template-editor>
-            <div class="submit-form-btn-container">
-                <button class="button submit-form-btn" type="submut">Generate</button>
             </div>
-
+            <div class="flex justify-center">
+                <button class="purple-btn" (click)="backToNews()">
+                    Go Back to News
+                </button>
+            </div>
         </form>
-        <div *ngIf="status != exportStatus.NONE">
-            <div *ngIf="status == exportStatus.SUCCESS">
-                Success!
-            </div>
-            <div *ngIf="status == exportStatus.FAILURE">
-                {{ error_msg }}
-            </div>
-        </div>
-        <!-- </div> -->
-        <div>
-            <button class="button submit-form-btn" (click)="backToNews()">
-                Go Back to News
-            </button>
-        </div>
+
     </div>
 </div>

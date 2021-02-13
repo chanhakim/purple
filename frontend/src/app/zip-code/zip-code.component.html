@@ -1,23 +1,34 @@
-<div class="home-page">
-    <h1>Send an Email</h1>
-    <p>
-        Paragraph about what this site is about
-    </p>
-    <div class="template-form-wrapper">
-        <form class="template-form" [formGroup]="zipForm" (ngSubmit)="onSubmit()">
-            <span class="template-form-title">Zip Code</span>
-            <div class="form-el-wrapper form-el-half bg0" for="zip-field">
-                <span class="form-el-title">From:</span>
-                <input class="form-el" id="from-field" type="text" formControlName="zip" />
+<div class="flex justify-center items-center">
+    <div class="container rounded bg-gray-100 max-w-screen-md shadow-lg mx-8 p-4 min-height">
+        <div class="home-page flex flex-col">
+            <div class="flex-none">
+                <h1 class="font-bold text-2xl">Send an Email</h1>
+                <p>
+                    Purple Activism curates pre-filled email templates and customizes them based on local and national
+                    news
+                    stories. Provide your zipcode below, and P.A. will collect locally relevant news stories.
+                </p>
             </div>
-            <div class="submit-form-btn-container">
-                <button class="button submit-form-btn" type="submut">Find Local News</button>
+            <div class="flex-none">
+                <form class="template-form" [formGroup]="zipForm" (ngSubmit)="onSubmit()">
+                    <div class="pb-1">
+                        <span class="template-form-title font-bold text-2xl">Zip Code</span>
+                    </div>
+                    <div class="flex justify-start items-center bg-white h-8 rounded px-1" for="zip-field">
+                        <span class="pr-2">From:</span>
+                        <input class="form-el w-full" id="from-field" type="text" formControlName="zip"
+                            placeholder="Enter your zipcode here..." />
+                    </div>
+                    <div class="submit-form-btn-container flex justify-center pt-2">
+                        <button class="submit-form-btn purple-btn" type="submit">Find Local News</button>
+                    </div>
+                </form>
             </div>
-        </form>
-    </div>
-    <div *ngIf="status != exportStatus.NONE">
-        <div *ngIf="status == exportStatus.FAILURE">
-            {{ error_msg }}
+            <div *ngIf="status != exportStatus.NONE">
+                <div *ngIf="status == exportStatus.FAILURE">
+                    {{ error_msg }}
+                </div>
+            </div>
         </div>
     </div>
 </div>
