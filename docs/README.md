@@ -14,7 +14,7 @@ POST
     "to": array[str],
     "from": str,
     "subject": str,
-    "body": str[html]
+    "body": str[html] # may be raw HTML
 }
 ```
 ^ Return
