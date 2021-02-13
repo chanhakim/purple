@@ -22,7 +22,7 @@ POST: id
 ```
 {
     "success": bool,
-    "error_msg": str
+    "message": str
 }
 ```
 
@@ -45,7 +45,7 @@ params: start_issue: int, n_issues: int, filter_keyword: str
             "id": uuid,
             "headline": str,
             "body": str,
-            "zip_code": array[str],
+            "zip_code": {str: true,},
             "link": str[url]
         }
     ]
@@ -63,6 +63,6 @@ POST
 ```
 {
     "success": bool,
-    "error_msg": str,
+    "message": str,
 }
 ```
