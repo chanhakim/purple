@@ -1,0 +1,22 @@
+{
+  "name": "purple",
+  "version": "1.0.0",
+  "description": "purple's backend",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chanhakim/purple.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chanhakim/purple/issues"
+  },
+  "homepage": "https://github.com/chanhakim/purple#readme",
+  "dependencies": {
+    "firebase": "^8.2.7"
+  }
+}
