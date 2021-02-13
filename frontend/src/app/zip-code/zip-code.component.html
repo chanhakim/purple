@@ -1,7 +1,7 @@
 <div class="flex justify-center items-center">
     <div class="container rounded bg-gray-100 max-w-screen-md shadow-lg mx-8 p-4 min-height">
         <div class="home-page flex flex-col">
-            <div>
+            <div class="flex-none">
                 <h1 class="font-bold text-2xl">Send an Email</h1>
                 <p>
                     Purple Activism curates pre-filled email templates and customizes them based on local and national
@@ -9,18 +9,18 @@
                     stories. Provide your zipcode below, and P.A. will collect locally relevant news stories.
                 </p>
             </div>
-            <div>
-            </div>
-            <div>
+            <div class="flex-none">
                 <form class="template-form" [formGroup]="zipForm" (ngSubmit)="onSubmit()">
-                    <span class="template-form-title font-bold text-2xl">Zip Code</span>
-                    <div class="flex justify-start items-center bg-white h-8" for="zip-field">
+                    <div class="pb-1">
+                        <span class="template-form-title font-bold text-2xl">Zip Code</span>
+                    </div>
+                    <div class="flex justify-start items-center bg-white h-8 rounded px-1" for="zip-field">
                         <span class="pr-2">From:</span>
                         <input class="form-el w-full" id="from-field" type="text" formControlName="zip"
                             placeholder="Enter your zipcode here..." />
                     </div>
-                    <div class="flex justify-center py-2">
-                        <button class="purple-btn" type="submut">Find Local News</button>
+                    <div class="submit-form-btn-container flex justify-center py-2">
+                        <button class="submit-form-btn purple-btn" type="submut">Find Local News</button>
                     </div>
                 </form>
             </div>

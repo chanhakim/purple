@@ -1,0 +1,23 @@
+<div class="home-page">
+    <h1>Send an Email</h1>
+    <p>
+        Paragraph about what this site is about
+    </p>
+    <div class="template-form-wrapper">
+        <form class="template-form" [formGroup]="zipForm" (ngSubmit)="onSubmit()">
+            <span class="template-form-title">Zip Code</span>
+            <div class="form-el-wrapper form-el-half bg0" for="zip-field">
+                <span class="form-el-title">From:</span>
+                <input class="form-el" id="from-field" type="text" formControlName="zip" />
+            </div>
+            <div class="submit-form-btn-container">
+                <button class="button submit-form-btn" type="submut">Find Local News</button>
+            </div>
+        </form>
+    </div>
+    <div *ngIf="status != exportStatus.NONE">
+        <div *ngIf="status == exportStatus.FAILURE">
+            {{ error_msg }}
+        </div>
+    </div>
+</div>

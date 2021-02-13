@@ -1,9 +1,9 @@
 .min-height{
-    min-height: 16em;
+    /* min-height: 16em; */
 }
 
 @media (min-width: 640px) {
     .min-height{
-        min-height: 32em;
+        /* min-height: 32em; */
     }
 }
