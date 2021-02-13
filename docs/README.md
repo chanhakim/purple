@@ -9,7 +9,7 @@ POST
         "name": {
             "role": str,
             "email": str,
-            "zip_codes": array[str]
+            "zip_codes": {str: true,}
         },
     ],
     "to": array[str],
@@ -37,7 +37,7 @@ params: start_issue: int, n_issues: int, filter_keyword: str
         "name": {
             "role": str,
             "email": str,
-            "zip_codes": array[str]
+            "zip_codes": {str: true,}
         },
     ],
     "newstories": {
