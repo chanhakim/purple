@@ -12,7 +12,7 @@
                 {{ article.body }}
             </div>
             <div>
-                <a [routerLink]="['/template', {{ getUUID() }}]" class="button">Write Senator About</a>
+                <button (click)="writeSenator(article.uuid)">Write Elected Official About</button>
             </div>
         </div>
     </div>

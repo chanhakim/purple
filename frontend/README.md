@@ -25,3 +25,41 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+# Value for State
+```
+{
+    zip: str,
+    news_stories: [
+        {
+            uuid: str[frontend],
+            id: str[backend],
+            headline: str,
+            body: str,
+            zip_code: array[str],
+            link: str
+        }
+    ],
+    "elected_officials": {
+        name: str {
+            role: str,
+            email: str,
+            zip_codes: {str: true}
+        }
+    },
+    "selected_news": {
+        {
+            uuid: str[frontend],
+            id: str[backend],
+            headline: str,
+            body: str,
+            zip_code: array[str],
+            link: str
+        }
+    }
+    "template: {
+        "subject": str,
+        "body": str
+    }
+}
+```

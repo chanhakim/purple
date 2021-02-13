@@ -16,6 +16,10 @@ export interface INewsStories {
     link: string;
 }
 
+export interface INewsStoriesValued extends INewsStories {
+    uuid: string;
+}
+
 // export interface INewsStoriesKV {
 //     [id: number]: INewsStories;
 // }

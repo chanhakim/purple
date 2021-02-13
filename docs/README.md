@@ -40,7 +40,7 @@ params: start_issue: int, n_issues: int, filter_keyword: str
             "zip_codes": {str: true,}
         },
     },
-    "newstories": {
+    "newstories": [
         {
             "id": uuid,
             "headline": str,
@@ -48,7 +48,7 @@ params: start_issue: int, n_issues: int, filter_keyword: str
             "zip_code": array[str],
             "link": str[url]
         }
-    }
+    ]
 }
 ```
 
