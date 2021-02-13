@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-template',
@@ -6,10 +7,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./template.component.css']
 })
 export class TemplateComponent implements OnInit {
+  emailForm = this.formBuilder.group({
+    to: '',
+    from: '',
+    subj: '',
+    message: '',
+  })
 
-  constructor() { }
+
+  constructor(
+    private formBuilder: FormBuilder,
+  ) { }
 
   ngOnInit(): void {
+
   }
 
+  onSubmit(): void {
+    console.log(this.emailForm.value);
+  }
 }

@@ -1,1 +1,25 @@
-<p>template works!</p>
+<div class="template-form">
+    <form [formGroup]="emailForm" (ngSubmit)="onSubmit()">
+        <div for="to-field">
+            To:
+            <input id="to-field" type="text" formControlName="to"/>
+        </div>
+        <div for="from-field">
+            To:
+            <input id="from-field" type="text" formControlName="from"/>
+        </div>
+        <div for="from-field">
+            To:
+            <input id="subj-field" type="text" formControlName="subj"/>
+        </div>
+        <div for="message-field">
+            <div id="message-desc">
+                Message:
+            </div>
+            <textarea id="message-field" formControlName="message">
+                Put your message here
+            </textarea>
+        </div>
+        <button class="button" type="submut">Send</button>
+    </form>
+</div>
