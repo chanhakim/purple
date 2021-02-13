@@ -2,15 +2,15 @@
     <form [formGroup]="emailForm" (ngSubmit)="onSubmit()">
         <div for="to-field">
             To:
-            <input id="to-field" type="text" formControlName="to"/>
+            <input id="to-field" type="text" formControlName="to" />
         </div>
         <div for="from-field">
             From:
-            <input id="from-field" type="text" formControlName="from"/>
+            <input id="from-field" type="text" formControlName="from" />
         </div>
-        <div for="from-field">
-            To:
-            <input id="subj-field" type="text" formControlName="subj"/>
+        <div for="subj-field">
+            Subject:
+            <input id="subj-field" type="text" formControlName="subj" />
         </div>
         <div for="message-field">
             <div id="message-desc">
