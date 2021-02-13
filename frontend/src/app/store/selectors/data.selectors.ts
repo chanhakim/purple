@@ -4,6 +4,11 @@ import { IDataState } from '../state/data.state';
 
 const selectApp = (state: IAppState) => state.appData;
 
+export const getData = createSelector(
+    selectApp,
+    (state: IDataState) => state
+)
+
 export const selectZip = createSelector(
     selectApp,
     (state: IDataState) => state.zip

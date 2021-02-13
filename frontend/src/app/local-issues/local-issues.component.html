@@ -2,6 +2,9 @@
     <h1 id="title">
         News Articles
     </h1>
+    <div *ngIf="selectedNews !== null">
+        <button (click)="contWriting()">Continue Working on Letter</button>
+    </div>
     <div id="news_div" *ngIf="news_articles_vals !== null">
         <div *ngFor="let article of news_articles_vals">
             <h3 id="news-article-header">
@@ -12,9 +15,11 @@
                 {{ article.body }}
             </div>
             <div>
-                <button (click)="writeSenator(article.uuid)">Write Elected Official About</button>
+                <button (click)="writeSenator(article.uuid, article)">Write Elected Official About</button>
             </div>
         </div>
     </div>
-    <a [routerLink]="['/zipcode']" class="button">Home Page</a>
+    <div>
+        <button (click)="router.navigate(['/zipcode'])">Go Back to Zip Code</button>
+    </div>
 </div>

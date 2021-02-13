@@ -4,7 +4,11 @@ import { HttpClient } from '@angular/common/http';
 
 import { EStatus, IResponse } from '../models/status';
 import { ITemplateData } from '../models/template-data';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { selectNews } from '../store/selectors/data.selectors';
+import { IAppState } from '../store/state/app.state';
+import { select, Store } from '@ngrx/store';
+import { INewsStoriesValued } from '../models/officials';
 
 @Component({
   selector: 'app-template',
@@ -23,13 +27,36 @@ export class TemplateComponent implements OnInit {
   error_msg = "";
   exportStatus = EStatus;
   id: string = "";
+  selectedNewsStory$ = this.store.pipe(select(selectNews));
+  selectedNews: INewsStoriesValued = {
+    uuid: '',
+    id: '',
+    headline: '',
+    body: '',
+    zip_code: [],
+    link: ''
+  };
 
 
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
     private route: ActivatedRoute,
-  ) {}
+    private store: Store<IAppState>,
+    public router: Router
+  ) {
+    this.selectedNewsStory$.subscribe((data) => {
+      if (data !== null) {
+        this.selectedNews = data;
+
+          this.emailForm.setValue({
+            ...this.emailForm.value,
+            subj: data.headline,
+            message: data.body
+          })
+      }
+    })
+  }
 
   ngOnInit(): void {
     let id = this.route.snapshot.paramMap.get('id');

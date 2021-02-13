@@ -8,8 +8,6 @@
     },
     "newstories": [
         {"id": "1", "headline": "Florida Man", "body": "Drives while high", "zip_code": ["15213"], "link": "http://localhost"},
-        {"id": "2", "headline": "Florida Man", "body": "Drives while high", "zip_code": ["15213"], "link": "http://localhost"},
-        {"id": "3", "headline": "Florida Man", "body": "Drives while high", "zip_code": ["15213"], "link": "http://localhost"},
-        {"id": "4", "headline": "Florida Man", "body": "Drives while high", "zip_code": ["15213"], "link": "http://localhost"}
+        {"id": "2", "headline": "Georgia Man", "body": "Drives while high", "zip_code": ["15213"], "link": "http://localhost"}
     ]
 }
