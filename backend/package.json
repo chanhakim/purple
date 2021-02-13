@@ -19,6 +19,7 @@
   "homepage": "https://github.com/chanhakim/purple#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "firebase": "^8.2.7"
+    "firebase": "^8.2.7",
+    "newsapi": "^2.4.1"
   }
 }
