@@ -1,14 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 import { EStatus, IResponse } from '../models/status';
-import { ITemplateData } from '../models/template-data';
+import { ISimpleTemplate, ITemplateData } from '../models/template-data';
 import { ActivatedRoute, Router } from '@angular/router';
-import { selectNews } from '../store/selectors/data.selectors';
+import { selectNews, selectTemplate } from '../store/selectors/data.selectors';
 import { IAppState } from '../store/state/app.state';
 import { select, Store } from '@ngrx/store';
 import { INewsStoriesValued } from '../models/officials';
+import { TemplateEditorComponent } from './template-editor/template-editor.component';
+import { UpdateTemplate } from '../store/actions/data.actions';
+import { validate } from 'uuid';
 
 @Component({
   selector: 'app-template',
@@ -27,16 +31,12 @@ export class TemplateComponent implements OnInit {
   error_msg = "";
   exportStatus = EStatus;
   id: string = "";
-  selectedNewsStory$ = this.store.pipe(select(selectNews));
-  selectedNews: INewsStoriesValued = {
-    uuid: '',
-    id: '',
-    headline: '',
-    body: '',
-    zip_code: [],
-    link: ''
+  selectedNewsStory$ = this.store.pipe(select(selectTemplate));
+  selectedNews: ISimpleTemplate = {
+    subject: '',
+    body: ''
   };
-
+  @ViewChild(TemplateEditorComponent) editor: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -49,11 +49,11 @@ export class TemplateComponent implements OnInit {
       if (data !== null) {
         this.selectedNews = data;
 
-          this.emailForm.setValue({
-            ...this.emailForm.value,
-            subj: data.headline,
-            message: data.body
-          })
+        this.emailForm.setValue({
+          ...this.emailForm.value,
+          subj: data.subject,
+          message: data.body
+        })
       }
     })
   }
@@ -72,13 +72,34 @@ export class TemplateComponent implements OnInit {
       to: val.to,
       from: val.from,
       subject: val.subj,
-      body: val.message
+      body: this.editor.htmlContent
     }
 
-    this.http.post<IResponse>(this.url, JSON.stringify(templateClass))
-      .subscribe((data) => {
-        this.status = data.success ? EStatus.SUCCESS : EStatus.FAILURE;
-        this.error_msg = data.error_msg;
-      });
+    this.store.dispatch(new UpdateTemplate(
+      {
+        subject: val.subj,
+        body: this.editor.htmlContent
+      }
+    ))
+
+    console.log(templateClass.body);
+    // this.http.post<IResponse>(this.url, JSON.stringify(templateClass))
+    //   .subscribe((data) => {
+    //     this.status = data.success ? EStatus.SUCCESS : EStatus.FAILURE;
+    //     this.error_msg = data.error_msg;
+    //   });
+
+  }
+
+  backToNews() {
+    var val = this.emailForm.value;
+    this.store.dispatch(new UpdateTemplate(
+      {
+        subject: val.subj,
+        body: this.editor.htmlContent
+      }
+    ));
+
+    this.router.navigate(['/local-issues'])
   }
 }

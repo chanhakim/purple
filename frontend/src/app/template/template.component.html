@@ -15,16 +15,17 @@
                 <span class="form-el-title">Subject:</span>
                 <input class="form-el" id="subj-field" type="text" formControlName="subj" />
             </div>
-            <div class="form-el-wrapper bg0" for="message-field">
+            <!-- <div class="form-el-wrapper bg0" for="message-field">
                 <div class="form-el-title" id="message-desc">
                     Message:
                 </div>
                 <textarea class="message-input" id="message-field" formControlName="message">
                     Put your message here
                 </textarea>
-            </div>
+            </div> -->
+            <app-template-editor [val]="emailForm.value.message"></app-template-editor>
             <div class="submit-form-btn-container">
-                <button class="button submit-form-btn" type="submut">Send</button>
+                <button class="button submit-form-btn" type="submut">Generate</button>
             </div>
 
         </form>
@@ -38,10 +39,9 @@
         </div>
         <!-- </div> -->
         <div>
-            <button class="button submit-form-btn" (click)="router.navigate(['/local-issues'])">
+            <button class="button submit-form-btn" (click)="backToNews()">
                 Go Back to News
             </button>
         </div>
     </div>
-
 </div>
