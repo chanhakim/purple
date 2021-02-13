@@ -6,7 +6,7 @@ import { Store, select } from '@ngrx/store';
 import { IDifferentIssues, INewsStoriesValued } from '../models/officials';
 import { GetNewsService } from '../service/get-news.service';
 import { IAppState } from '../store/state/app.state';
-import { AddSingleStory, SelectedNews } from '../store/actions/data.actions';
+import { AddSingleStory, SelectedNews, UpdateTemplate } from '../store/actions/data.actions';
 import { selectNews } from '../store/selectors/data.selectors';
 
 @Component({
@@ -56,6 +56,12 @@ export class LocalIssuesComponent implements OnInit {
     this.store.dispatch(new SelectedNews(
       article
     ));
+    this.store.dispatch(new UpdateTemplate(
+      {
+        subject: article.headline,
+        body: "<p><font face=\"Arial\">" + article.body + "</font></p>"
+      }
+    ))
     this.router.navigate(['/template', id]);
   }
 
