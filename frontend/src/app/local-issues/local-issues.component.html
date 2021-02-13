@@ -11,6 +11,10 @@
             <div id="news-article-body">
                 {{ article.body }}
             </div>
+            <div>
+                <a [routerLink]="['/template', {{ getUUID() }}]" class="button">Write Senator About</a>
+            </div>
         </div>
     </div>
+    <a [routerLink]="['/zipcode']" class="button">Home Page</a>
 </div>

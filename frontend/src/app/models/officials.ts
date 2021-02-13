@@ -9,17 +9,18 @@ export interface IOfficialsKV {
 }
 
 export interface INewsStories {
+    id: string;
     headline: string;
     body: string;
     zip_code: string[];
     link: string;
 }
 
-export interface INewsStoriesKV {
-    [id: number]: INewsStories;
-}
+// export interface INewsStoriesKV {
+//     [id: number]: INewsStories;
+// }
 
 export interface IDifferentIssues {
     elected_officials: IOfficialsKV;
-    newstories: INewsStoriesKV;
+    newstories: INewsStories[];
 }

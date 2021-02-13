@@ -2,7 +2,7 @@
 
 
 ```
-POST
+POST: id
 {
     "template_id": int,
     "elected_officials": [
@@ -33,15 +33,16 @@ GET
 params: start_issue: int, n_issues: int, filter_keyword: str
 
 {
-    "elected_officials": [
+    "elected_officials": {
         "name": {
             "role": str,
             "email": str,
             "zip_codes": {str: true,}
         },
-    ],
+    },
     "newstories": {
-        "id": str(unique): {
+        {
+            "id": uuid,
             "headline": str,
             "body": str,
             "zip_code": array[str],

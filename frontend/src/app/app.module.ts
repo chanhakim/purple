@@ -6,13 +6,18 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TemplateComponent } from './template/template.component';
+import { TemplateRoutingModule } from './template/template-routing.component';
 import { LocalIssuesComponent } from './local-issues/local-issues.component';
+import { LocalIssuesRoutingModule } from './local-issues/local-issues-routing.component';
+import { ZipCodeComponent } from './zip-code/zip-code.component';
+import { ZipCodeRoutingModule } from './zip-code/zip-code-routing.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TemplateComponent,
-    LocalIssuesComponent
+    LocalIssuesComponent,
+    ZipCodeComponent
   ],
   imports: [
     BrowserModule,
@@ -20,6 +25,9 @@ import { LocalIssuesComponent } from './local-issues/local-issues.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    ZipCodeRoutingModule,
+    TemplateRoutingModule,
+    LocalIssuesRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

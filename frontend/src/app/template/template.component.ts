@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { EStatus, IResponse } from '../models/status';
 import { ITemplateData } from '../models/template-data';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-template',
@@ -21,14 +22,18 @@ export class TemplateComponent implements OnInit {
   status = EStatus.NONE;
   error_msg = "";
   exportStatus = EStatus;
+  id: string = "";
 
 
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
-  ) { }
+    private route: ActivatedRoute,
+  ) {}
 
   ngOnInit(): void {
+    let id = this.route.snapshot.paramMap.get('id');
+    console.log(id);
   }
 
   onSubmit(): void {

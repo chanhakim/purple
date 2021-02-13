@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { IDifferentIssues, INewsStories, INewsStoriesKV } from '../models/officials';
+import { v4 as uuidv4 } from 'uuid';
+
+import { IDifferentIssues, INewsStories } from '../models/officials';
 import { GetNewsService } from '../service/get-news.service';
 
 @Component({
@@ -16,6 +18,10 @@ export class LocalIssuesComponent implements OnInit {
 
   ngOnInit(): void {
     this.newsfeed.getNews()
-      .subscribe((news: IDifferentIssues) => this.news_articles_vals = Object.values(news.newstories));
+      .subscribe((news: IDifferentIssues) => this.news_articles_vals = news.newstories);
+  }
+
+  getUUID(): string {
+    return uuidv4();
   }
 }
