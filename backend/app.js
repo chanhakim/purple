@@ -246,4 +246,23 @@ app.get("/api/single_template/:id", function(req, res) {
     }
 });
 
-// 
+/**
+ * GET request for a set of news
+ */
+app.get("/api/news/:from-:to", function(req, res) {
+
+  if (!req.params.from || !req.params.to) {
+    handleError(res, "Invalid user input", "Must provide a start and end.", 400);
+  } else{
+    db.collection('news_stories').orderBy('date').limit(req.params.to-req.params.from).get()
+      .then((snapshot) => {
+        console.log(req.params.from +" "+req.params.to);
+        res.status(200).json(getDocuments(snapshot));
+
+      })
+      .catch((error) => {
+      res.status(500).send(error);
+      handleError(res, error.message, "Failed to get template.");
+      });
+    }
+});

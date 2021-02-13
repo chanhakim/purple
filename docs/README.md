@@ -46,7 +46,8 @@ params: start_issue: int, n_issues: int, filter_keyword: str
             "headline": str,
             "body": str,
             "zip_code": {str: true,},
-            "link": str[url]
+            "link": str[url],
+            "date": str[yyyymmdd],
         }
     ]
 }
@@ -65,4 +66,9 @@ POST
     "success": bool,
     "message": str,
 }
+```
+
+```
+GET
+params: zipcode: int
 ```
