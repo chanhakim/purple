@@ -2,9 +2,9 @@
     <div *ngIf="acceptInput">
         <angular-editor [(ngModel)]="htmlContent" [config]="config"></angular-editor>
     </div> 
-    <div>
+    <!-- <div>
         {{ htmlContent }}
-    </div>
-    <div *ngIf="!acceptInput" [innerHtml]="htmlContent">
+    </div> -->
+    <div *ngIf="!acceptInput" [innerHtml]="htmlContent | safeHtml">
     </div>
 </div>
