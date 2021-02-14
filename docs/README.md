@@ -30,7 +30,7 @@ POST: id
 # Different Issues
 ```
 GET
-params: start_issue: int, n_issues: int, filter_keyword: str
+params: zip: str, start_issue: int, n_issues: int, filter_keyword: str
 
 {
     "elected_officials": {
