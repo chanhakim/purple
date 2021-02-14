@@ -336,8 +336,8 @@ app.post('/sendmail', function(req, res, next) {
   });
 
   const mailOptions = {
-    from: `${req.body.from}@gmail.com`,
-    to:  `${req.body.to[0]}@usa.com`,
+    from: `${req.body.from}`,
+    to:  `${req.body.to}`,
     subject: `${req.body.subject}`,
     html: `${req.body.body}`,
   }
