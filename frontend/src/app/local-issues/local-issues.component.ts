@@ -64,7 +64,24 @@ export class LocalIssuesComponent implements OnInit {
         from: "myemail",
         template_id: "",
         subject: article.headline,
-        body: "<p><font face=\"Arial\">" + article.body + "</font></p>"
+        body: `
+        <font face="Arial">
+        <p>Dear [Insert Elected Offical Title &amp; Name],</p>
+        <p>My name is [Insert First &amp; Last Name] and I am one of your constituents.
+        I am writing you about the issue of [Insert Issue]. I strongly believe [Insert
+        Stance] about this issue for the following reasons:</p>
+        <ul>
+        <li>[Insert Reason 1]</li>
+        <li>[Insert Reason 2]</li>
+        <li>[Insert Reason 3]</li>
+        </ul>
+        <p>This issue matters to our community and state. [Insert Personal Story, if You Have One] I hope that my points above will persuade you to [Insert Action].&nbsp;</p>
+        <p style="text-align: right;">Sincerely,</p>
+        <p style="text-align: right;">[Insert Name]&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        </font>
+        `
       }
     ))
     this.router.navigate(['/template', id]);
