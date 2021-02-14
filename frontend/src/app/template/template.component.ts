@@ -91,7 +91,8 @@ export class TemplateComponent implements OnInit {
           headline: this.emailForm.value.subj,
           body: this.emailForm.value.message,
           zip_code: [],
-          link: ''
+          link: '',
+          tag: ''
         }))
       }
     })

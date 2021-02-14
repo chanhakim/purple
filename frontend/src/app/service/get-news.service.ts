@@ -3,32 +3,32 @@ import { HttpClient } from '@angular/common/http';
 
 import { catchError } from 'rxjs/operators';
 
-import { IDifferentIssues } from '../models/officials';
+import { IDifferentIssues, INewsStories } from '../models/officials';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GetNewsService {
-  baseUrl: string = 'assets/'
+  baseUrl: string = 'http://localhost:3000/api/news'
 
   constructor(
     private http: HttpClient
   ) { }
 
-  getNews() : Observable<IDifferentIssues> {
-      return this.http.get<IDifferentIssues>(this.baseUrl + 'news.json')
-        .pipe(
-          catchError(this.handleError)
-        )
+  getNews(): Observable<INewsStories[]> {
+    return this.http.get<INewsStories[]>(this.baseUrl)
+      .pipe(
+        catchError(this.handleError)
+      )
   }
 
   private handleError(error: any) {
     console.error('server error:', error);
-      if (error.error instanceof Error) {
-          const errMessage = error.error.message;
-          return Observable.throw(errMessage);
-      }
-      return Observable.throw(error || 'Node.js server error');
+    if (error.error instanceof Error) {
+      const errMessage = error.error.message;
+      return Observable.throw(errMessage);
+    }
+    return Observable.throw(error || 'Node.js server error');
   }
 }

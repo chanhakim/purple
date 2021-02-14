@@ -24,22 +24,12 @@
                     <span>Send</span>
                 </button>
             </div>
-            <div class="flex justify-center">
-                <div *ngIf="status != exportStatus.NONE">
-                    <div *ngIf="status == exportStatus.SUCCESS">
-                        Success!
-                    </div>
-                    <div *ngIf="status == exportStatus.FAILURE">
-                        {{ error_msg }}
-                    </div>
-                </div>
-            </div>
-            <div class="flex justify-center" *ngIf="!editorStatus">
-                <button class="purple-btn w-full" (click)="toEdit()">
-                    Edit
-                </button>
-            </div>
         </form>
+        <div class="flex justify-center" *ngIf="!editorStatus">
+            <button class="purple-btn w-full" (click)="toEdit()">
+                Edit
+            </button>
+        </div>
         <!--These should be outside of the form-->
         <div class="flex justify-center">
             <button class="purple-btn w-full" (click)="copyLink()">

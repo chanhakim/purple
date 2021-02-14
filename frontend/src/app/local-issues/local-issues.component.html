@@ -1,7 +1,7 @@
 <div class="flex justify-center">
     <div class="container rounded">
         <div class="app-local-issues-div">
-            <div class="">
+            <div class="pb-8">
                 <button (click)=" router.navigate(['/zipcode'])" class=" rounded-full border-2 border-black text-white font-semibold h-8 w-8 flex justify-center
                     items-center shadow-md p-1 bg-white transform hover:scale-110 focus:outline-none" type="submit">
                     <svg class="w-6 h-6" fill="none" stroke="black" viewBox="0 0 24 24"
@@ -30,11 +30,11 @@
                         <!-- {{ article.headline }} -->
                         <a class="transform hover:underline" href="{{ article.link }}">{{ article.headline }}</a>
                     </h3>
-                    <div id="news-article-body">
-                        {{ article.body }}
-                    </div>
+
                     <div class="flex justify-between">
-                        <div>Write your elected official about this!</div>
+                        <div id="news-article-body">
+                            {{ article.tag }}
+                        </div>
                         <div>
                             <button class="focus:outline-none transform hover:scale-110"
                                 (click)="writeSenator(article.uuid, article)">
