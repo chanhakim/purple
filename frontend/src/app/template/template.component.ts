@@ -20,7 +20,7 @@ import { EEditStatus } from './template-editor/template-editor.component';
 @Component({
   selector: 'app-template',
   templateUrl: './template.component.html',
-  styleUrls: ['./template.component.css']
+  styleUrls: ['./template.component.css'],
 })
 export class TemplateComponent implements OnInit {
   emailForm = this.formBuilder.group({
@@ -28,10 +28,10 @@ export class TemplateComponent implements OnInit {
     from: '',
     subj: '',
     message: '',
-  })
+  });
   url = 'http://localhost:3000/api/templates/';
   status = EStatus.NONE;
-  error_msg = "";
+  error_msg = '';
   exportStatus = EStatus;
   idVal: string | null = null;
   selectedNewsStory$ = this.store.pipe(select(selectTemplate));
@@ -56,14 +56,12 @@ export class TemplateComponent implements OnInit {
           to: data.to,
           from: data.from,
           subj: data.subject,
-          message: data.body
-        })
-        console.log("=====")
-        console.log(this.emailForm.value.message)
+          message: data.body,
+        });
+        console.log('=====');
+        console.log(this.emailForm.value.message);
       }
-    })
-
-
+    });
   }
 
   ngOnInit(): void {
@@ -72,30 +70,31 @@ export class TemplateComponent implements OnInit {
 
     this.selectedNewsStory$.subscribe((data) => {
       if (data === null) {
-        this.getTemp.getTemplate(this.idVal)
-          .subscribe((resp) => {
-            this.emailForm.setValue({
-              ...this.emailForm.value,
-              to: resp === null ? '' : resp.to,
-              from: resp === null ? '' : resp.from,
-              subj: resp === null ? '' : resp.subject,
-              message: resp === null ? '' : "<p>" + resp.body + "</p>"
-            })
-            console.log(this.emailForm.value.message)
-            this.editor.htmlContent = this.emailForm.value.message;
-            // this.editor.htmlContent = `<h1><font face="ariel">Hello</font>World</h1>`;
+        this.getTemp.getTemplate(this.idVal).subscribe((resp) => {
+          this.emailForm.setValue({
+            ...this.emailForm.value,
+            to: resp === null ? '' : resp.to,
+            from: resp === null ? '' : resp.from,
+            subj: resp === null ? '' : resp.subject,
+            message: resp === null ? '' : '<p>' + resp.body + '</p>',
+          });
+          console.log(this.emailForm.value.message);
+          this.editor.htmlContent = this.emailForm.value.message;
+          // this.editor.htmlContent = `<h1><font face="ariel">Hello</font>World</h1>`;
+        });
+        this.store.dispatch(
+          new SelectedNews({
+            id: '',
+            uuid: this.idVal !== null ? this.idVal : '',
+            headline: this.emailForm.value.subj,
+            body: this.emailForm.value.message,
+            zip_code: [],
+            link: '',
+            tag: '',
           })
-        this.store.dispatch(new SelectedNews({
-          id: '',
-          uuid: this.idVal !== null ? this.idVal : '',
-          headline: this.emailForm.value.subj,
-          body: this.emailForm.value.message,
-          zip_code: [],
-          link: '',
-          tag: ''
-        }))
+        );
       }
-    })
+    });
   }
 
   onSubmit(): void {
@@ -106,19 +105,16 @@ export class TemplateComponent implements OnInit {
       to: val.to,
       from: val.from,
       subject: val.subj,
-      body: this.editor.htmlContent
-    }
+      body: this.editor.htmlContent,
+    };
 
-    this.store.dispatch(new UpdateTemplate(
-      templateClass
-    ))
+    this.store.dispatch(new UpdateTemplate(templateClass));
 
     if (this.editorStatus) {
-      this.http.post<IResponse>(this.url, templateClass)
-        .subscribe((data) => {
-          this.status = data.success ? EStatus.SUCCESS : EStatus.FAILURE;
-          this.error_msg = data.error_msg;
-        })
+      this.http.post<IResponse>(this.url, templateClass).subscribe((data) => {
+        this.status = data.success ? EStatus.SUCCESS : EStatus.FAILURE;
+        this.error_msg = data.error_msg;
+      });
     }
 
     this.editorStatus = false;
@@ -127,20 +123,18 @@ export class TemplateComponent implements OnInit {
 
   backToNews() {
     var val = this.emailForm.value;
-    console.log(this.editor.htmlContent)
+    console.log(this.editor.htmlContent);
     var templateClass: ITemplateData = {
       template_id: this.idVal !== null ? this.idVal : '',
       to: val.to,
       from: val.from,
       subject: val.subj,
-      body: this.editor.htmlContent
-    }
+      body: this.editor.htmlContent,
+    };
 
-    this.store.dispatch(new UpdateTemplate(
-      templateClass
-    ));
+    this.store.dispatch(new UpdateTemplate(templateClass));
 
-    this.router.navigate(['/local-issues'])
+    this.router.navigate(['/local-issues']);
   }
 
   toEdit() {
@@ -150,12 +144,13 @@ export class TemplateComponent implements OnInit {
 
   sendEmail() {
     // var mailText = "mailto:abc@abc.com+?subject=files&body="+this.links.join(" ,");
-    var mailText = "mailto:quinnang.gill@gmail.com"
-    mailText += "+?subject=" + this.emailForm.value.subject;
-    mailText += "&html-body=" + this.emailForm.value.message;
+    var mailText = 'mailto:quinnang.gill@gmail.com';
+
+    mailText += '?subject=' + this.emailForm.value.subj;
+    mailText += '&html-body=' + this.emailForm.value.message;
 
     console.log(mailText);
-    // window.location.href = mailText;
+    window.location.href = mailText;
   }
 
   copyLink() {
@@ -164,7 +159,7 @@ export class TemplateComponent implements OnInit {
     selBox.style.left = '0';
     selBox.style.top = '0';
     selBox.style.opacity = '0';
-    selBox.value = "hello";
+    selBox.value = 'hello';
     document.body.appendChild(selBox);
     selBox.focus();
     selBox.select();
