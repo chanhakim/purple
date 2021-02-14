@@ -14,7 +14,8 @@ module.exports = {
       purple: {
         light: '#E9E7FC',
         dark: '#7F19E5'
-      }
+      },
+      red: colors.red,
     }
   },
   variants: {
