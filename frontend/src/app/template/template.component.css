@@ -2,6 +2,10 @@
     min-height: 12em;
 }
 
+.template-button {
+    @apply bg-black rounded-lg px-2 py-2 text-white font-semibold w-full transform  focus:outline-none hover:bg-gray-700;
+}
+
 @media (min-width: 640px) {
     .min-ta-height{
         min-height: 24em;
