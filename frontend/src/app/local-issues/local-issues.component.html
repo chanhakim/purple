@@ -1,10 +1,11 @@
 <div class="flex justify-center">
     <div class="container rounded">
         <div class="app-local-issues-div">
-            <div class="flex justify-center items-center">
-                <h1 class="text-2xl font-bold" id="title">
-                    News Articles
+            <div class="flex flex-col items-center">
+                <h1 class="text-2xl font-bold text-white" id="title">
+                    Issues in Your Area
                 </h1>
+                <p class="text-white">Click on an News Article to Learn More</p>
             </div>
 
             <div class="flex justify-center items-center" *ngIf="selectedNews !== null">
@@ -38,7 +39,22 @@
                 </div>
             </div>
             <div class="flex justify-center p-2">
-                <button class="purple-btn" (click)="router.navigate(['/zipcode'])">Go Back to Zip Code</button>
+                <!-- <button class="purple-btn">Go Back to Zip Code</button> -->
+                <button (click)=" router.navigate(['/zipcode'])" class=" rounded-full border-2 border-black text-white font-semibold h-8 w-8 flex justify-center
+                    items-center shadow-md p-1 bg-white transform hover:scale-110 focus:outline-none" type="submit">
+                    <svg class="w-6 h-6" fill="none" stroke="black" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7">
+                        </path>
+                    </svg>
+                </button>
+                <!-- <button
+                    class="rounded-full border-2 border-black text-white font-semibold h-8 w-8 flex justify-center items-center shadow-md p-1 bg-white transform hover:scale-110 focus:outline-none"
+                    type="submit">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="black">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                </button> -->
             </div>
         </div>
     </div>

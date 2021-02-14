@@ -5,5 +5,5 @@
 @import 'tailwindcss/utilities';
 
 .purple-btn {
-    @apply bg-purple-400 rounded-full px-2 text-white font-semibold;
+    @apply bg-black rounded-lg px-2 py-2 text-white font-semibold focus:outline-none;
 }
