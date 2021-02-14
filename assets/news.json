@@ -1,0 +1,13 @@
+{
+    "elected_officials": {
+        "hello": {
+            "role": "cool",
+            "email": "darling@gmal",
+            "zip_codes": ["15213"]
+        }
+    },
+    "newstories": [
+        {"id": "1", "headline": "Florida Man", "body": "Drives while high", "zip_code": ["15213"], "link": "http://localhost"},
+        {"id": "2", "headline": "Georgia Man", "body": "Drives while high", "zip_code": ["15213"], "link": "http://localhost"}
+    ]
+}
