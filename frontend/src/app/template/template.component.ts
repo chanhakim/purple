@@ -30,6 +30,7 @@ export class TemplateComponent implements OnInit {
     message: '',
   });
   url = 'http://localhost:3000/api/templates/';
+  emailUrl = "http://localhost:3000/sendmail";
   status = EStatus.NONE;
   error_msg = '';
   exportStatus = EStatus;
@@ -148,13 +149,20 @@ export class TemplateComponent implements OnInit {
 
   sendEmail() {
     // var mailText = "mailto:abc@abc.com+?subject=files&body="+this.links.join(" ,");
-    var mailText = 'mailto:quinnang.gill@gmail.com';
+    var val = this.emailForm.value;
+    var templateClass: ITemplateData = {
+      template_id: this.idVal !== null ? this.idVal : '',
+      to: val.to,
+      from: val.from,
+      subject: val.subj,
+      body: this.editor.htmlContent,
+    };
 
-    mailText += '?subject=' + this.emailForm.value.subj;
-    mailText += '&html-body=' + this.emailForm.value.message;
-
-    console.log(mailText);
-    window.location.href = mailText;
+    this.http.post<IResponse>(this.emailUrl, templateClass)
+      .subscribe((data) => {
+        // this.status = data.success ? EStatus.SUCCESS : EStatus.FAILURE;
+        // this.error_msg = data.error_msg;
+      });
   }
 
   copyLink() {

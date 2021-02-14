@@ -2,6 +2,7 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var firebase = require("firebase/app");
 var cors = require("cors");
+var nodemailer = require("nodemailer");
 
 require("firebase/firestore");
 
@@ -303,6 +304,53 @@ app.get("/api/zip_codes_to_officials/:zip", function(req, res) {
       });
     }
 });
+
+const sendMail = (user, callback) => {
+  const transporter = nodemailer.createTransport({
+    host: "smtp.mailtrap.io",
+    port: 2525,
+    auth: {
+      user: "fba45975646932",
+      pass: "17da59ecd3a277"
+    }
+  });
+
+  const mailOptions = {
+    from: `"Concerned Citizen", <${user.from}>`,
+    to: `<${user.email}>`,
+    subject: `<${user.subject}>`,
+    html: `<${user.html}>`
+  };
+
+  transporter.sendMail(mailOptions, callback);
+}
+
+app.post('/sendmail', function(req, res, next) {
+  const transporter = nodemailer.createTransport({
+    host: "smtp.mailtrap.io",
+    port: 2525,
+    auth: {
+      user: "fba45975646932",
+      pass: "17da59ecd3a277"
+    }
+  });
+
+  const mailOptions = {
+    from: `${req.body.from}@gmail.com`,
+    to:  `${req.body.to[0]}@usa.com`,
+    subject: `${req.body.subject}`,
+    html: `${req.body.body}`,
+  }
+
+  console.log("Sending mail...");
+  transporter.sendMail(mailOptions, function(err, res) {
+    if (err) {
+      console.error('there was an error: ', err);
+    } else {
+      console.log('here is the res: ', res)
+    }
+  })
+})
 
 // app.get("/api/issues/:zip/:from-:to-:tag", function(req, res) {
 //   if (!req.params.zip || !req.params.from || !req.params.to || !req.params.tag) {
