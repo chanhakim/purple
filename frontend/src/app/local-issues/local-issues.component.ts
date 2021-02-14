@@ -69,7 +69,7 @@ export class LocalIssuesComponent implements OnInit {
         <p>Dear [Insert Elected Offical Title &amp; Name],</p>
         <p>My name is [Insert First &amp; Last Name] and I am one of your constituents.
         I am writing you about the issue of [Insert Issue]. I strongly believe [Insert
-        Stance] about this issue for the following reasons:</p>
+        Stance About Issue] for the following reasons:</p>
         <ul>
         <li>[Insert Reason 1]</li>
         <li>[Insert Reason 2]</li>
