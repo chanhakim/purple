@@ -1,4 +1,4 @@
-<div class="flex justify-center items-center">
+<div class="flex justify-center items-center h-full">
     <div class="container rounded-lg bg-gray-100 max-w-screen-md shadow-xl mx-8 border border-black">
         <form class="p-4 grid grid-cols-1 sm:grid-cols-2 gap-4" [formGroup]="emailForm" (ngSubmit)="onSubmit()">
             <div for="from-field">
@@ -16,30 +16,47 @@
             <div class="sm:col-span-2 bg-white rounded p-2">
                 <app-template-editor [val]="emailForm.value.message"></app-template-editor>
             </div>
-            <div class="flex justify-center">
-                <button class="purple-btn w-full" type="submit" *ngIf="editorStatus">
+            <div class="grid grid-cols-2 gap-4">
+
+
+                <button type="button" *ngIf="!editorStatus" class="purple-btn w-full transform hover:bg-gray-700"
+                    (click)="toEdit()">
+                    Edit
+                </button>
+
+                <button type="submit" class="purple-btn w-full transform hover:bg-gray-700" (click)="sendEmail()"
+                    *ngIf="!editorStatus">
+                    <span>Send</span>
+                </button>
+
+                <button type="button" *ngIf="editorStatus" class="purple-btn w-full transform hover:bg-gray-700"
+                    (click)="backToNews()">
+                    Go Back to News
+                </button>
+
+                <button type="submit" class="purple-btn w-full transform hover:bg-gray-700" *ngIf="editorStatus">
                     <span>Generate</span>
                 </button>
-                <button class="purple-btn w-full" (click)="sendEmail()" *ngIf="!editorStatus">
-                    <span>Send</span>
+
+
+
+                <button type="button" class="purple-btn w-full transform hover:bg-gray-700 col-span-2"
+                    (click)="copyLink()">
+                    Copy Template Link
                 </button>
             </div>
         </form>
-        <div class="flex justify-center" *ngIf="!editorStatus">
-            <button class="purple-btn w-full" (click)="toEdit()">
-                Edit
-            </button>
+
+        <div class="flex justify-center">
+
         </div>
         <!--These should be outside of the form-->
-        <div class="flex justify-center" *ngIf="editorStatus">
-            <button class="purple-btn w-full" (click)="copyLink()">
-                Copy Link to Clip Board
-            </button>
+        <div class="flex justify-center">
+
         </div>
         <div class="flex justify-center">
-            <button class="purple-btn w-full" (click)="backToNews()">
-                Go Back to News
-            </button>
+
         </div>
+
     </div>
 </div>
