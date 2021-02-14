@@ -31,7 +31,7 @@
             </button>
         </div>
         <!--These should be outside of the form-->
-        <div class="flex justify-center">
+        <div class="flex justify-center" *ngIf="editorStatus">
             <button class="purple-btn w-full" (click)="copyLink()">
                 Copy Link to Clip Board
             </button>
