@@ -4,6 +4,6 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-.purple-btn {
+.gen-btn {
     @apply bg-black rounded-lg px-2 py-2 text-white font-semibold focus:outline-none;
 }

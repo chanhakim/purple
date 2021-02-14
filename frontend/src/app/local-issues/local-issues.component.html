@@ -20,19 +20,24 @@
             </div>
 
             <div class="flex justify-center items-center pt-4" *ngIf="selectedNews !== null">
-                <button class="purple-btn" (click)="contWriting()">Continue Working on Letter</button>
+                <button class="gen-btn" (click)="contWriting()">Continue Working on Letter</button>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 m-8 gap-4" id="news_div"
                 *ngIf="news_articles_vals !== null">
-                <div class="bg-gray-100 shadow m-1 p-2 rounded-lg border border-black shadow-xl hover:bg-purple-light transform hover:scale-105"
+                <div class="bg-gray-100 shadow m-1 p-2 rounded-lg border border-black shadow-xl hover:bg-purple-light transform hover:scale-105 flex flex-col justify-between"
                     *ngFor="let article of news_articles_vals">
-                    <h3 class="text-xl font-bold " id="news-article-header">
+                    <h3 class="text-xl font-bold flex-none" id="news-article-header">
                         <!-- {{ article.headline }} -->
                         <a class="transform hover:underline" href="{{ article.link }}">{{ article.headline }}</a>
                     </h3>
+                    <div class="flex-grow max-h-40 overflow-auto overflow-scroll bg-white p-3 no-bar">
+                        <p>
+                            {{ article.body }}
+                        </p>
 
-                    <div class="flex justify-between">
+                    </div>
+                    <div class=" flex-none flex justify-between">
                         <div id="news-article-body">
                             {{ article.tag }}
                         </div>
