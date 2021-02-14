@@ -1,34 +1,28 @@
 <div class="flex justify-center items-center">
-    <div class="container rounded bg-gray-100 max-w-screen-md shadow-lg mx-8">
-        <form class="p-2 grid grid-cols-1 sm:grid-cols-2 gap-2" [formGroup]="emailForm" (ngSubmit)="onSubmit()">
-            <div class="sm:col-span-2 flex justify-center">
-                <span class="text-2xl font-bold">Draft Email</span>
+    <div class="container rounded-lg bg-gray-100 max-w-screen-md shadow-xl mx-8 border border-black">
+        <form class="p-4 grid grid-cols-1 sm:grid-cols-2 gap-4" [formGroup]="emailForm" (ngSubmit)="onSubmit()">
+            <div for="from-field">
+                <input class="w-full bg-white rounded px-2 py-3 focus:border focus:bg-purple-light" id="from-field"
+                    type="text" formControlName="from" placeholder="From" />
             </div>
-            <div class="bg-white rounded px-2" for="from-field">
-                <span class="text-sm">From:</span>
-                <input class="w-full" id="from-field" type="text" formControlName="from"
-                    placeholder="Enter your email here." />
+            <div for="to-field">
+                <input class="w-full bg-white rounded px-2 py-3 focus:border focus:bg-purple-light" id="to-field"
+                    type="text" formControlName="to" placeholder="To" />
             </div>
-            <div class="bg-white rounded px-2" for="to-field">
-                <span class="text-sm">To:</span>
-                <input class="w-full" id="to-field" type="text" formControlName="to"
-                    placeholder="Senator contact info." />
-            </div>
-            <div class="sm:col-span-2 bg-white rounded px-2" for=" subj-field">
-                <span class="text-sm">Subject:</span>
-                <input class="w-full" id="subj-field" type="text" formControlName="subj"
-                    placeholder="Give your message a headline here." />
+            <div class="sm:col-span-2" for="subj-field">
+                <input class="w-full bg-white rounded px-2 py-3 focus:border focus:bg-purple-light" id="subj-field"
+                    type="text" formControlName="subj" placeholder="Subject" />
             </div>
             <div class="sm:col-span-2 bg-white rounded p-2">
                 <app-template-editor [val]="emailForm.value.message"></app-template-editor>
             </div>
             <div class="flex justify-center">
-                <button class="purple-btn w-full" (click)="backToNews()">
-                    Go Back to News
+                <button class="purple-btn w-full" type="submit">
+                    <span *ngIf="editorStatus">Generate</span>
+                    <span *ngIf="!editorStatus">Send</span>
                 </button>
             </div>
             <div class="flex justify-center">
-                <button class="purple-btn w-full" type="submit">Send</button>
                 <div *ngIf="status != exportStatus.NONE">
                     <div *ngIf="status == exportStatus.SUCCESS">
                         Success!
@@ -37,6 +31,16 @@
                         {{ error_msg }}
                     </div>
                 </div>
+            </div>
+            <div class="flex justify-center" *ngIf="!editorStatus">
+                <button class="purple-btn w-full" (click)="toEdit()">
+                    Edit
+                </button>
+            </div>
+            <div class="flex justify-center">
+                <button class="purple-btn w-full" (click)="backToNews()">
+                    Go Back to News
+                </button>
             </div>
         </form>
 

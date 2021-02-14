@@ -58,6 +58,9 @@ export class LocalIssuesComponent implements OnInit {
     ));
     this.store.dispatch(new UpdateTemplate(
       {
+        to: ["email1", "email2"],
+        from: "myemail",
+        template_id: "",
         subject: article.headline,
         body: "<p><font face=\"Arial\">" + article.body + "</font></p>"
       }

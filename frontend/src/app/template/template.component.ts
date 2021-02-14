@@ -11,8 +11,11 @@ import { IAppState } from '../store/state/app.state';
 import { select, Store } from '@ngrx/store';
 import { INewsStoriesValued } from '../models/officials';
 import { TemplateEditorComponent } from './template-editor/template-editor.component';
-import { UpdateTemplate } from '../store/actions/data.actions';
+import { SelectedNews, UpdateTemplate } from '../store/actions/data.actions';
 import { validate } from 'uuid';
+import { IDataState } from '../store/state/data.state';
+import { GetTemplateService } from '../service/get-template.service';
+import { EEditStatus } from './template-editor/template-editor.component';
 
 @Component({
   selector: 'app-template',
@@ -26,49 +29,81 @@ export class TemplateComponent implements OnInit {
     subj: '',
     message: '',
   })
-  url = 'https://purple-test.free.beeceptor.com';
+  url = 'http://localhost:3000/api/templates/';
   status = EStatus.NONE;
   error_msg = "";
   exportStatus = EStatus;
-  id: string = "";
+  idVal: string | null = null;
   selectedNewsStory$ = this.store.pipe(select(selectTemplate));
-  selectedNews: ISimpleTemplate = {
-    subject: '',
-    body: ''
-  };
+  selectedNews: ITemplateData | null = null;
   @ViewChild(TemplateEditorComponent) editor: any;
+  editorStatus = true;
 
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
     private route: ActivatedRoute,
     private store: Store<IAppState>,
-    public router: Router
+    public router: Router,
+    private getTemp: GetTemplateService
   ) {
+
+
     this.selectedNewsStory$.subscribe((data) => {
       if (data !== null) {
         this.selectedNews = data;
 
         this.emailForm.setValue({
           ...this.emailForm.value,
+          to: data.to,
+          from: data.from,
           subj: data.subject,
           message: data.body
         })
+        console.log("=====")
+        console.log(this.emailForm.value.message)
       }
     })
+
+
   }
 
   ngOnInit(): void {
-    let id = this.route.snapshot.paramMap.get('id');
-    console.log(id);
+    this.idVal = this.route.snapshot.paramMap.get('id');
+    console.log(this.idVal);
+
+    this.selectedNewsStory$.subscribe((data) => {
+      if (data === null) {
+        this.getTemp.getTemplate(this.idVal)
+          .subscribe((resp) => {
+            this.emailForm.setValue({
+              ...this.emailForm.value,
+              to: resp === null ? '' : resp.to,
+              from: resp === null ? '' : resp.from,
+              subj: resp === null ? '' : resp.subject,
+              message: resp === null ? '' : "<p>" + resp.body + "</p>"
+            })
+            console.log(this.emailForm.value.message)
+            this.editor.htmlContent = this.emailForm.value.message;
+            // this.editor.htmlContent = `<h1><font face="ariel">Hello</font>World</h1>`;
+          })
+        this.store.dispatch(new SelectedNews({
+          id: '',
+          uuid: this.idVal !== null ? this.idVal : '',
+          headline: this.emailForm.value.subj,
+          body: this.emailForm.value.message,
+          zip_code: [],
+          link: ''
+        }))
+      }
+    })
   }
 
   onSubmit(): void {
     console.log(this.emailForm.value);
     var val = this.emailForm.value;
     var templateClass: ITemplateData = {
-      template_id: 1,
-      elected_officials: null,
+      template_id: this.idVal !== null ? this.idVal : '',
       to: val.to,
       from: val.from,
       subject: val.subj,
@@ -76,31 +111,41 @@ export class TemplateComponent implements OnInit {
     }
 
     this.store.dispatch(new UpdateTemplate(
-      {
-        subject: val.subj,
-        body: this.editor.htmlContent
-      }
+      templateClass
     ))
 
-    console.log(templateClass.body);
-    // this.http.post<IResponse>(this.url, JSON.stringify(templateClass))
-    //   .subscribe((data) => {
-    //     this.status = data.success ? EStatus.SUCCESS : EStatus.FAILURE;
-    //     this.error_msg = data.error_msg;
-    //   });
+    if (this.editorStatus) {
+      this.http.post<IResponse>(this.url, templateClass)
+        .subscribe((data) => {
+          this.status = data.success ? EStatus.SUCCESS : EStatus.FAILURE;
+          this.error_msg = data.error_msg;
+        })
+    }
 
+    this.editorStatus = false;
+    this.editor.acceptInput = false;
   }
 
   backToNews() {
     var val = this.emailForm.value;
     console.log(this.editor.htmlContent)
+    var templateClass: ITemplateData = {
+      template_id: this.idVal !== null ? this.idVal : '',
+      to: val.to,
+      from: val.from,
+      subject: val.subj,
+      body: this.editor.htmlContent
+    }
+
     this.store.dispatch(new UpdateTemplate(
-      {
-        subject: val.subj,
-        body: this.editor.htmlContent
-      }
+      templateClass
     ));
 
     this.router.navigate(['/local-issues'])
+  }
+
+  toEdit() {
+    this.editorStatus = true;
+    this.editor.acceptInput = true;
   }
 }

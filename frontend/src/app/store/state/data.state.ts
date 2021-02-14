@@ -1,12 +1,12 @@
 import { INewsStoriesValued, IOfficialsKV } from "src/app/models/officials";
-import { ISimpleTemplate } from "src/app/models/template-data";
+import { ISimpleTemplate, ITemplateData } from "src/app/models/template-data";
 
 export interface IDataState {
     zip: string;
     news_stories: INewsStoriesValued[];
     elected_officials: IOfficialsKV | null;
     selected_news: INewsStoriesValued | null;
-    template: ISimpleTemplate | null;
+    template: ITemplateData | null;
 }
 
 export const initialDataState: IDataState = {
