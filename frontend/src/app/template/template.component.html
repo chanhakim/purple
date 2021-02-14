@@ -1,6 +1,6 @@
-<div class="flex justify-center items-center h-full">
-    <div class="container rounded-lg bg-gray-100 max-w-screen-md shadow-xl mx-8 border border-black">
-        <form class="p-4 grid grid-cols-1 sm:grid-cols-2 gap-4" [formGroup]="emailForm" (ngSubmit)="onSubmit()">
+<div class="flex justify-center items-center h-full p-8">
+    <div class="container rounded-lg bg-gray-100 max-w-screen-md shadow-xl mx-8 border border-black wdth">
+        <form class="p-4 grid grid-cols-2 gap-4 w-full" [formGroup]="emailForm" (ngSubmit)="onSubmit()">
             <div for="from-field">
                 <input class="w-full bg-white rounded px-2 py-3 focus:border focus:bg-purple-light" id="from-field"
                     type="text" formControlName="from" placeholder="From" />
@@ -9,11 +9,11 @@
                 <input class="w-full bg-white rounded px-2 py-3 focus:border focus:bg-purple-light" id="to-field"
                     type="text" formControlName="to" placeholder="To" />
             </div>
-            <div class="sm:col-span-2" for="subj-field">
+            <div class="col-span-2" for="subj-field">
                 <input class="w-full bg-white rounded px-2 py-3 focus:border focus:bg-purple-light" id="subj-field"
                     type="text" formControlName="subj" placeholder="Subject" />
             </div>
-            <div class="sm:col-span-2 bg-white rounded p-2">
+            <div class="col-span-2 bg-white rounded p-2">
                 <app-template-editor class="overflow-y-auto" [val]="emailForm.value.message"></app-template-editor>
             </div>
             <div class="col-span-2 grid grid-cols-2 gap-4">
