@@ -163,6 +163,7 @@ export class TemplateComponent implements OnInit {
         // this.status = data.success ? EStatus.SUCCESS : EStatus.FAILURE;
         // this.error_msg = data.error_msg;
       });
+    alert("Sent email!");
   }
 
   copyLink() {
