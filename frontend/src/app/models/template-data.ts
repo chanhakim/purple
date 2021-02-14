@@ -6,8 +6,7 @@ export interface ISimpleTemplate {
 }
 
 export interface ITemplateData extends ISimpleTemplate {
-    template_id: number;
-    elected_officials: IOfficialsKV | null;
-    to: string;
+    template_id: string;
+    to: string[];
     from: string;
 }

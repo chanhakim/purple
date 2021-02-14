@@ -17,12 +17,12 @@
                 <app-template-editor [val]="emailForm.value.message"></app-template-editor>
             </div>
             <div class="flex justify-center">
-                <button class="purple-btn w-full" (click)="backToNews()">
-                    Go Back to News
+                <button class="purple-btn w-full" type="submit">
+                    <span *ngIf="editorStatus">Generate</span>
+                    <span *ngIf="!editorStatus">Send</span>
                 </button>
             </div>
             <div class="flex justify-center">
-                <button class="purple-btn w-full" type="submit">Generate Email</button>
                 <div *ngIf="status != exportStatus.NONE">
                     <div *ngIf="status == exportStatus.SUCCESS">
                         Success!
@@ -31,6 +31,16 @@
                         {{ error_msg }}
                     </div>
                 </div>
+            </div>
+            <div class="flex justify-center" *ngIf="!editorStatus">
+                <button class="purple-btn w-full" (click)="toEdit()">
+                    Edit
+                </button>
+            </div>
+            <div class="flex justify-center">
+                <button class="purple-btn w-full" (click)="backToNews()">
+                    Go Back to News
+                </button>
             </div>
         </form>
 
