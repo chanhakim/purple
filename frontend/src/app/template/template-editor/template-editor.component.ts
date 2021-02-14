@@ -24,7 +24,7 @@ export class TemplateEditorComponent implements OnInit {
     minHeight: '5rem',
     placeholder: 'Enter text here...',
     translate: 'no',
-    defaultParagraphSeparator: 'p',
+    // defaultParagraphSeparator: 'p',
     defaultFontName: 'Arial',
     toolbarHiddenButtons: [
       ['bold']

@@ -17,6 +17,7 @@ import { ZipCodeRoutingModule } from './zip-code/zip-code-routing.component';
 import { appReducers } from './store/reducers/app.reducers';
 import { TemplateEditorComponent } from './template/template-editor/template-editor.component';
 import { RenderTemplateComponent } from './render-template/render-template.component';
+import { SafeHtmlPipe } from './pipes/safe-html.pipe';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { RenderTemplateComponent } from './render-template/render-template.compo
     LocalIssuesComponent,
     ZipCodeComponent,
     TemplateEditorComponent,
-    RenderTemplateComponent
+    RenderTemplateComponent,
+    SafeHtmlPipe
   ],
   imports: [
     BrowserModule,

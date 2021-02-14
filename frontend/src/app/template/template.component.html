@@ -17,9 +17,11 @@
                 <app-template-editor [val]="emailForm.value.message"></app-template-editor>
             </div>
             <div class="flex justify-center">
-                <button class="purple-btn w-full" type="submit">
-                    <span *ngIf="editorStatus">Generate</span>
-                    <span *ngIf="!editorStatus">Send</span>
+                <button class="purple-btn w-full" type="submit" *ngIf="editorStatus">
+                    <span>Generate</span>
+                </button>
+                <button class="purple-btn w-full" (click)="sendEmail()" *ngIf="!editorStatus">
+                    <span>Send</span>
                 </button>
             </div>
             <div class="flex justify-center">
@@ -37,12 +39,17 @@
                     Edit
                 </button>
             </div>
-            <div class="flex justify-center">
-                <button class="purple-btn w-full" (click)="backToNews()">
-                    Go Back to News
-                </button>
-            </div>
         </form>
-
+        <!--These should be outside of the form-->
+        <div class="flex justify-center">
+            <button class="purple-btn w-full" (click)="copyLink()">
+                Copy Link to Clip Board
+            </button>
+        </div>
+        <div class="flex justify-center">
+            <button class="purple-btn w-full" (click)="backToNews()">
+                Go Back to News
+            </button>
+        </div>
     </div>
 </div>

@@ -47,8 +47,6 @@ export class TemplateComponent implements OnInit {
     public router: Router,
     private getTemp: GetTemplateService
   ) {
-
-
     this.selectedNewsStory$.subscribe((data) => {
       if (data !== null) {
         this.selectedNews = data;
@@ -147,5 +145,29 @@ export class TemplateComponent implements OnInit {
   toEdit() {
     this.editorStatus = true;
     this.editor.acceptInput = true;
+  }
+
+  sendEmail() {
+    // var mailText = "mailto:abc@abc.com+?subject=files&body="+this.links.join(" ,");
+    var mailText = "mailto:quinnang.gill@gmail.com"
+    mailText += "+?subject=" + this.emailForm.value.subject;
+    mailText += "&html-body=" + this.emailForm.value.message;
+
+    console.log(mailText);
+    // window.location.href = mailText;
+  }
+
+  copyLink() {
+    const selBox = document.createElement('textarea');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value = "hello";
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+    document.execCommand('copy');
+    document.body.removeChild(selBox);
   }
 }
