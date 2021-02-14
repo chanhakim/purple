@@ -30,11 +30,11 @@
                         <!-- {{ article.headline }} -->
                         <a class="transform hover:underline" href="{{ article.link }}">{{ article.headline }}</a>
                     </h3>
-                    <div id="news-article-body">
-                        {{ article.body }}
-                    </div>
+
                     <div class="flex justify-between">
-                        <div>Write your elected official about this!</div>
+                        <div id="news-article-body">
+                            {{ article.tag }}
+                        </div>
                         <div>
                             <button class="focus:outline-none transform hover:scale-110"
                                 (click)="writeSenator(article.uuid, article)">

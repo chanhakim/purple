@@ -14,6 +14,7 @@ export interface INewsStories {
     body: string;
     zip_code: string[];
     link: string;
+    tag: string;
 }
 
 export interface INewsStoriesValued extends INewsStories {
