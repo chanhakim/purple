@@ -74,14 +74,14 @@ export class TemplateComponent implements OnInit {
 
     this.selectedNewsStory$.subscribe((data) => {
       if (data === null) {
-        this.getTemp.getTemplate()
+        this.getTemp.getTemplate(this.idVal)
           .subscribe((resp) => {
             this.emailForm.setValue({
               ...this.emailForm.value,
-              to: resp.to,
-              from: resp.from,
-              subj: resp.subject,
-              message: "<p>" + resp.body + "</p>"
+              to: resp === null ? '' : resp.to,
+              from: resp === null ? '' : resp.from,
+              subj: resp === null ? '' : resp.subject,
+              message: resp === null ? '' : "<p>" + resp.body + "</p>"
             })
             console.log(this.emailForm.value.message)
             this.editor.htmlContent = this.emailForm.value.message;
@@ -115,7 +115,7 @@ export class TemplateComponent implements OnInit {
     ))
 
     if (this.editorStatus) {
-      this.http.post<IResponse>(this.url, JSON.stringify(templateClass))
+      this.http.post<IResponse>(this.url, templateClass)
         .subscribe((data) => {
           this.status = data.success ? EStatus.SUCCESS : EStatus.FAILURE;
           this.error_msg = data.error_msg;

@@ -13,8 +13,7 @@ export class GetTemplateService {
     private http: HttpClient
   ) { }
 
-  getTemplate(): Observable<ITemplateData> {
-    let id = "123"
+  getTemplate(id: string | null): Observable<ITemplateData> {
     return this.http.get<ITemplateData>(this.baseUrl + id)
       .pipe(
         catchError(this.handleError)
