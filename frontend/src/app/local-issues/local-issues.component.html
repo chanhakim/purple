@@ -11,12 +11,13 @@
             <div class="flex justify-center items-center" *ngIf="selectedNews !== null">
                 <button class="purple-btn" (click)="contWriting()">Continue Working on Letter</button>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 m-8" id="news_div"
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 m-8 gap-4" id="news_div"
                 *ngIf="news_articles_vals !== null">
-                <div class="bg-gray-100 shadow m-1 p-1 rounded" *ngFor="let article of news_articles_vals">
-                    <h3 id="news-article-header">
+                <div class="bg-gray-100 shadow m-1 p-2 rounded-lg border border-black shadow-xl hover:bg-purple-light transform hover:scale-105"
+                    *ngFor="let article of news_articles_vals">
+                    <h3 class="text-xl font-bold " id="news-article-header">
                         <!-- {{ article.headline }} -->
-                        <a href="{{ article.link }}">{{ article.headline }}</a>
+                        <a class="transform hover:underline" href="{{ article.link }}">{{ article.headline }}</a>
                     </h3>
                     <div id="news-article-body">
                         {{ article.body }}
@@ -24,7 +25,8 @@
                     <div class="flex justify-between">
                         <div>Write your elected official about this!</div>
                         <div>
-                            <button (click)="writeSenator(article.uuid, article)">
+                            <button class="focus:outline-none transform hover:scale-110"
+                                (click)="writeSenator(article.uuid, article)">
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
