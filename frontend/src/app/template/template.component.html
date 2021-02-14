@@ -14,34 +14,28 @@
                     type="text" formControlName="subj" placeholder="Subject" />
             </div>
             <div class="sm:col-span-2 bg-white rounded p-2">
-                <app-template-editor [val]="emailForm.value.message"></app-template-editor>
+                <app-template-editor class="overflow-y-auto" [val]="emailForm.value.message"></app-template-editor>
             </div>
-            <div class="grid grid-cols-2 gap-4">
+            <div class="col-span-2 grid grid-cols-2 gap-4">
 
 
-                <button type="button" *ngIf="!editorStatus" class="purple-btn w-full transform hover:bg-gray-700"
-                    (click)="toEdit()">
+                <button type="button" *ngIf="!editorStatus" class="template-button" (click)="toEdit()">
                     Edit
                 </button>
 
-                <button type="submit" class="purple-btn w-full transform hover:bg-gray-700" (click)="sendEmail()"
-                    *ngIf="!editorStatus">
+                <button type="submit" class="template-button" (click)="sendEmail()" *ngIf="!editorStatus">
                     <span>Send</span>
                 </button>
 
-                <button type="button" *ngIf="editorStatus" class="purple-btn w-full transform hover:bg-gray-700"
-                    (click)="backToNews()">
+                <button type="button" *ngIf="editorStatus" class="template-button" (click)="backToNews()">
                     Go Back to News
                 </button>
 
-                <button type="submit" class="purple-btn w-full transform hover:bg-gray-700" *ngIf="editorStatus">
+                <button type="submit" class="template-button" *ngIf="editorStatus">
                     <span>Generate</span>
                 </button>
 
-
-
-                <button type="button" class="purple-btn w-full transform hover:bg-gray-700 col-span-2"
-                    (click)="copyLink()">
+                <button type="button" class="template-button col-span-2" (click)="copyLink()">
                     Copy Template Link
                 </button>
             </div>
