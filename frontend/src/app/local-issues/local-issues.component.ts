@@ -67,15 +67,19 @@ export class LocalIssuesComponent implements OnInit {
         body: `
         <font face="Arial">
         <p>Dear [Insert Elected Offical Title &amp; Name],</p>
+        <br />
         <p>My name is [Insert First &amp; Last Name] and I am one of your constituents.
         I am writing you about the issue of [Insert Issue]. I strongly believe [Insert
         Stance About Issue] for the following reasons:</p>
+        <br />
         <ul>
         <li>[Insert Reason 1]</li>
         <li>[Insert Reason 2]</li>
         <li>[Insert Reason 3]</li>
         </ul>
+        <br />
         <p>This issue matters to our community and state. [Insert Personal Story, if You Have One] I hope that my points above will persuade you to [Insert Action].&nbsp;</p>
+        <br />
         <p style="text-align: right;">Sincerely,</p>
         <p style="text-align: right;">[Insert Name]&nbsp;</p>
         <p>&nbsp;</p>
