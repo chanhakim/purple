@@ -164,7 +164,7 @@ export class TemplateComponent implements OnInit {
     selBox.style.left = '0';
     selBox.style.top = '0';
     selBox.style.opacity = '0';
-    selBox.value = "hello";
+    selBox.value = window.location.href.replace("template", "redirect");
     document.body.appendChild(selBox);
     selBox.focus();
     selBox.select();

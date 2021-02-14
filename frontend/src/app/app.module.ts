@@ -18,6 +18,7 @@ import { appReducers } from './store/reducers/app.reducers';
 import { TemplateEditorComponent } from './template/template-editor/template-editor.component';
 import { RenderTemplateComponent } from './render-template/render-template.component';
 import { SafeHtmlPipe } from './pipes/safe-html.pipe';
+import { RedirectTemplateComponent } from './redirect-template/redirect-template.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { SafeHtmlPipe } from './pipes/safe-html.pipe';
     ZipCodeComponent,
     TemplateEditorComponent,
     RenderTemplateComponent,
-    SafeHtmlPipe
+    SafeHtmlPipe,
+    RedirectTemplateComponent,
   ],
   imports: [
     BrowserModule,
