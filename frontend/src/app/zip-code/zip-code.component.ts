@@ -13,7 +13,7 @@ export class ZipCodeComponent implements OnInit {
   zipForm = this.formBuilder.group({
     zip: ''
   })
-  url = 'http://localhost:3000/api/zipcode/';
+  url = 'http://34.71.67.202/api/zipcode/';
   status = EStatus.NONE;
   error_msg = "";
   exportStatus = EStatus;
