@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { v4 as uuidv4 } from 'uuid';
-import { Store, select } from '@ngrx/store'; 
+import { Store, select } from '@ngrx/store';
 
 import { IDifferentIssues, INewsStoriesValued } from '../models/officials';
 import { GetNewsService } from '../service/get-news.service';
