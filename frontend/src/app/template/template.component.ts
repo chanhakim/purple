@@ -192,14 +192,12 @@ export class TemplateComponent implements OnInit {
       templateClass
     ))
 
-    console.log("===========================", this.editorStatus);
-    if (this.editorStatus) {
-      console.log("IT POSTED!!!!")
-      this.http.post<IResponse>(this.url, templateClass)
-        .subscribe((data) => {
-          this.status = data.success ? EStatus.SUCCESS : EStatus.FAILURE;
-          this.error_msg = data.error_msg;
-        })
-    }
+    console.log("IT POSTED!!!!")
+    alert("Copied template link to clipboard!")
+    this.http.post<IResponse>(this.url, templateClass)
+      .subscribe((data) => {
+        this.status = data.success ? EStatus.SUCCESS : EStatus.FAILURE;
+        this.error_msg = data.error_msg;
+      })
   }
 }
