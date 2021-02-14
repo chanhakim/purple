@@ -3,8 +3,21 @@
     display: none;
 }
 
+.no-bar::-webkit-scrollbar:hover {
+  display: block;
+}
+
 /* Hide scrollbar for IE, Edge and Firefox */
 .no-bar {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
+}
+
+.no-bar:hover {
+  -ms-overflow-style: block;  /* IE and Edge */
+  scrollbar-width: block;  /* Firefox */
+}
+
+.max-wdth {
+  max-width: 22rem;
 }

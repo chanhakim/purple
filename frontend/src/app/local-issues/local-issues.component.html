@@ -23,9 +23,9 @@
                 <button class="gen-btn" (click)="contWriting()">Continue Working on Letter</button>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 m-8 gap-4" id="news_div"
-                *ngIf="news_articles_vals !== null">
-                <div class="bg-gray-100 shadow m-1 p-2 rounded-lg border border-black shadow-xl hover:bg-purple-light transform hover:scale-105 flex flex-col justify-between"
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 m-8 gap-4 items-stretch place-items-center"
+                id="news_div" *ngIf="news_articles_vals !== null">
+                <div class="bg-gray-100 shadow m-1 p-2 rounded-lg border border-black shadow-xl hover:bg-purple-light transform hover:scale-105 flex flex-col justify-between max-wdth"
                     *ngFor="let article of news_articles_vals">
                     <h3 class="text-xl font-bold flex-none" id="news-article-header">
                         <!-- {{ article.headline }} -->
