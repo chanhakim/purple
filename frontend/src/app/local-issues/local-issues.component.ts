@@ -60,8 +60,8 @@ export class LocalIssuesComponent implements OnInit {
     ));
     this.store.dispatch(new UpdateTemplate(
       {
-        to: ["email1", "email2"],
-        from: "myemail",
+        to: ["senator1@ussenate.gov", "senator2@ussenate.gov"],
+        from: "me@gmail.com",
         template_id: "",
         subject: article.headline,
         body: `
