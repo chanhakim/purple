@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
+import * as autoprefixer from 'autoprefixer';
 
 export enum EEditStatus {
   INPUT,
@@ -20,8 +21,9 @@ export class TemplateEditorComponent implements OnInit {
   config: AngularEditorConfig = {
     editable: true,
     spellcheck: false,
-    height: '15rem',
-    minHeight: '5rem',
+    minHeight: '22rem',
+    maxHeight: '24rem',
+    width: 'auto',
     placeholder: 'Enter text here...',
     translate: 'no',
     // defaultParagraphSeparator: 'p',
