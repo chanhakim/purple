@@ -37,6 +37,14 @@ function getDocuments(snapshot) {
   return tmp;
 }
 
+function getDocumentsAsList(snapshot) {
+  let tmp = [];
+  snapshot.forEach((doc) => {
+  tmp.push(doc.data());
+  });
+  return tmp;
+}
+
 const http = require('http');
 
 const hostname = '127.0.0.1';
@@ -259,7 +267,7 @@ app.get("/api/news/:from-:to-:tag", function(req, res) {
     if (req.params.tag == 'any') {
       db.collection('news_stories').orderBy('date').limit(req.params.from+req.params.to).get()
         .then((snapshot) => {
-          res.status(200).json(getDocuments(snapshot.docs.slice(req.params.from,req.params.to)));
+          res.status(200).json(getDocumentsAsList(snapshot.docs.slice(req.params.from,req.params.to)));
         })
         .catch((error) => {
         res.status(500).send(error);
@@ -269,7 +277,7 @@ app.get("/api/news/:from-:to-:tag", function(req, res) {
     else {
       db.collection('news_stories').where('tag', '==', req.params.tag).orderBy('date').limit(req.params.from+req.params.to).get()
         .then((snapshot) => {
-          res.status(200).json(getDocuments(snapshot.docs.slice(req.params.from,req.params.to)));
+          res.status(200).json(getDocumentsAsList(snapshot.docs.slice(req.params.from,req.params.to)));
         })
         .catch((error) => {
         res.status(500).send(error);
@@ -296,4 +304,36 @@ app.get("/api/zip_codes_to_officials/:zip", function(req, res) {
     }
 });
 
+// app.get("/api/issues/:zip/:from-:to-:tag", function(req, res) {
+//   if (!req.params.zip || !req.params.from || !req.params.to || !req.params.tag) {
+//     handleError(res, "Invalid user input", "Must provide a zip code, start, end, and a tag. (Put any for any tag).", 400);
+//   } else {
+//     db.collection('zip_codes').doc('zip_codes_to_officials').get()
+//     .then((snapshot) => {
+//       const officials = (snapshot.data()[req.params.zip]);
+//       if (req.params.tag == 'any') {
+
+//       }
+//       else{
+
+//       }
+//       .then((news) => {
+//         const bundle = {
+//           elected_officials: officials,
+//           news_stories: news,
+//         }
+//         response.status(500).json(bundle);
+//       })
+//       .catch((error)=> {
+//         res.status(500).send(error);
+//         handleError(res, error.message, "Failed to get news.");
+//       });
+//     })
+//     .catch((error) => {
+//       res.status(500).send(error);
+//       handleError(res, error.message, "Failed to get officials.");
+//     })
+//   }
+
+// });
 
