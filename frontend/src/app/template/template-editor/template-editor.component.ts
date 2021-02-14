@@ -21,6 +21,7 @@ export class TemplateEditorComponent implements OnInit {
   config: AngularEditorConfig = {
     editable: true,
     spellcheck: false,
+    sanitize: false,
     minHeight: '22rem',
     maxHeight: '24rem',
     width: 'auto',
