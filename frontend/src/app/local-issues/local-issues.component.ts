@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { v4 as uuidv4 } from 'uuid';
 import { Store, select } from '@ngrx/store';
 
-import { IDifferentIssues, INewsStoriesValued } from '../models/officials';
+import { IDifferentIssues, INewsStoriesValued, INewsStories } from '../models/officials';
 import { GetNewsService } from '../service/get-news.service';
 import { IAppState } from '../store/state/app.state';
 import { AddSingleStory, SelectedNews, UpdateTemplate } from '../store/actions/data.actions';
@@ -31,20 +31,22 @@ export class LocalIssuesComponent implements OnInit {
 
   ngOnInit(): void {
     this.newsfeed.getNews()
-      .subscribe((news: IDifferentIssues) => {
+      .subscribe((news: INewsStories[]) => {
         // this.news_articles_vals = news.newstories
-        this.news_articles_vals = news.newstories.map((story) => {
+        console.log(news);
+        this.news_articles_vals = []
+        for (const [storyKey, storyVal] of Object.entries(news)) {
           let article: INewsStoriesValued = {
-            ...story,
+            ...storyVal,
             uuid: this.getUUID()
-          }
+          };
 
           this.store.dispatch(new AddSingleStory(
             article
           ));
 
-          return article;
-        })
+          this.news_articles_vals?.push(article);
+        }
       });
   }
 

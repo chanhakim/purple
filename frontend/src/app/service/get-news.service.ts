@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { catchError } from 'rxjs/operators';
 
-import { IDifferentIssues } from '../models/officials';
+import { IDifferentIssues, INewsStories } from '../models/officials';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -16,8 +16,8 @@ export class GetNewsService {
     private http: HttpClient
   ) { }
 
-  getNews(): Observable<IDifferentIssues> {
-    return this.http.get<IDifferentIssues>(this.baseUrl)
+  getNews(): Observable<INewsStories[]> {
+    return this.http.get<INewsStories[]>(this.baseUrl)
       .pipe(
         catchError(this.handleError)
       )
