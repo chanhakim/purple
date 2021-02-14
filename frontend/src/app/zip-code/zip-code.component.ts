@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EStatus, IResponse } from '../models/status';
@@ -41,13 +41,15 @@ export class ZipCodeComponent implements OnInit {
           // console.log(document.getElementById("from-field")?.classList);
           document.getElementById("from-field")?.classList.add("border");
           document.getElementById("from-field")?.classList.add("border-black");
+          document.getElementById("from-field")?.setAttribute("placeholder", "5-Digit Zip Code");
         } else {
           this.error_msg = data.error_msg;
           document.getElementById("from-field")?.classList.remove("border-black")
           document.getElementById("from-field")?.classList.remove("border")
-          // console.log(document.getElementById("from-field")?.classList);
           document.getElementById("from-field")?.classList.add("border-red-500");
           document.getElementById("from-field")?.classList.add("border-2");
+          document.getElementById("from-field")?.setAttribute("placeholder", "Please enter a correct zip code.");
+          this.zipForm.setValue({ zip: '' });
         }
       })
     // this.router.navigate(['/local-issues']);
