@@ -8,7 +8,7 @@ import { ITemplateData } from '../models/template-data';
   providedIn: 'root'
 })
 export class GetTemplateService {
-  baseUrl: string = 'http://localhost:3000/api/single_template/'
+  baseUrl: string = 'http://34.71.67.202/api/single_template/'
   constructor(
     private http: HttpClient
   ) { }

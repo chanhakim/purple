@@ -29,8 +29,8 @@ export class TemplateComponent implements OnInit {
     subj: '',
     message: '',
   });
-  url = 'http://localhost:3000/api/templates/';
-  emailUrl = "http://localhost:3000/sendmail";
+  url = ' http://34.71.67.202/api/templates/';
+  emailUrl = "http://34.71.67.202/sendmail";
   status = EStatus.NONE;
   error_msg = '';
   exportStatus = EStatus;

@@ -13,7 +13,7 @@ export class ZipCodeComponent implements OnInit {
   zipForm = this.formBuilder.group({
     zip: ''
   })
-  url = 'https://purple-test.free.beeceptor.com/api/zipcode/';
+  url = 'http://localhost:3000/api/zipcode/';
   status = EStatus.NONE;
   error_msg = "";
   exportStatus = EStatus;
@@ -30,13 +30,16 @@ export class ZipCodeComponent implements OnInit {
   onSubmit(): void {
     console.log(this.zipForm.value);
     
-    // this.http.post<IResponse>(this.url, JSON.stringify(this.zipForm.value))
-    //   .subscribe((data) => {
-    //     this.status = data.success ? EStatus.SUCCESS : EStatus.FAILURE;
-    //     if (this.status == EStatus.SUCCESS) {
-    //       this.router.navigate(['/local-issues']);
-    //     }
-    //   })
-    this.router.navigate(['/local-issues']);
+    this.http.post<IResponse>(this.url, this.zipForm.value)
+      .subscribe((data) => {
+        this.status = data.success ? EStatus.SUCCESS : EStatus.FAILURE;
+        if (this.status == EStatus.SUCCESS) {
+          console.log("Success")
+          this.router.navigate(['/local-issues']);
+        } else {
+          this.error_msg = data.error_msg;
+        }
+      })
+    // this.router.navigate(['/local-issues']);
   }
 }

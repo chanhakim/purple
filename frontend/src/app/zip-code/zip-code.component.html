@@ -50,6 +50,11 @@
                             class="form-el p-2 rounded-lg border border-black shadow-xl focus:outline-none focus:bg-purple-light focus:placeholder-transparent text-center"
                             id="from-field" type="text" formControlName="zip" placeholder="5-Digit Zip Code" />
                     </div>
+                    <div *ngIf="status != exportStatus.NONE">
+                        <div *ngIf="status == exportStatus.FAILURE">
+                            {{ error_msg }}
+                        </div>
+                    </div>
                     <div class="submit-form-btn-container flex justify-center pt-4">
                         <button
                             class="rounded-full border-2 border-black text-white font-semibold h-8 w-8 flex justify-center items-center shadow-md p-1 bg-white transform hover:scale-110 focus:outline-none"
@@ -61,11 +66,6 @@
                         </button>
                     </div>
                 </form>
-            </div>
-            <div *ngIf="status != exportStatus.NONE">
-                <div *ngIf="status == exportStatus.FAILURE">
-                    {{ error_msg }}
-                </div>
             </div>
         </div>
     </div>

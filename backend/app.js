@@ -352,6 +352,29 @@ app.post('/sendmail', function(req, res, next) {
   })
 })
 
+app.post("/api/zipcode", function(req, res) {
+  var zipcode = req.body;
+  if (!zipcode.zip) {
+    res.status(200).json({
+      success: false,
+      error_msg: "No zip code entered"
+    })
+  } else {
+    // 94305
+    if (zipcode.zip == "94305") {
+      res.status(201).json({
+        success: true,
+        error_msg: ""
+      })
+    } else {
+      res.status(200).json({
+        success: false,
+        error_msg: "Unable to get zip code"
+      })
+    }
+  }
+});
+
 // app.get("/api/issues/:zip/:from-:to-:tag", function(req, res) {
 //   if (!req.params.zip || !req.params.from || !req.params.to || !req.params.tag) {
 //     handleError(res, "Invalid user input", "Must provide a zip code, start, end, and a tag. (Put any for any tag).", 400);

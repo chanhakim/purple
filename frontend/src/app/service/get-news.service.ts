@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class GetNewsService {
-  baseUrl: string = 'http://localhost:3000/api/news'
+  baseUrl: string = ' http://34.71.67.202/api/news'
 
   constructor(
     private http: HttpClient
