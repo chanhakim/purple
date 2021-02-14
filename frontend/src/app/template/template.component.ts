@@ -48,6 +48,7 @@ export class TemplateComponent implements OnInit {
     private getTemp: GetTemplateService
   ) {
     this.selectedNewsStory$.subscribe((data) => {
+      console.log(data !== null ? data : 'null data');
       if (data !== null) {
         this.selectedNews = data;
 
@@ -113,7 +114,9 @@ export class TemplateComponent implements OnInit {
       templateClass
     ))
 
+    console.log("===========================", this.editorStatus);
     if (this.editorStatus) {
+      console.log("IT POSTED!!!!")
       this.http.post<IResponse>(this.url, templateClass)
         .subscribe((data) => {
           this.status = data.success ? EStatus.SUCCESS : EStatus.FAILURE;
@@ -170,5 +173,28 @@ export class TemplateComponent implements OnInit {
     selBox.select();
     document.execCommand('copy');
     document.body.removeChild(selBox);
+
+    var val = this.emailForm.value;
+    var templateClass: ITemplateData = {
+      template_id: this.idVal !== null ? this.idVal : '',
+      to: val.to,
+      from: val.from,
+      subject: val.subj,
+      body: this.editor.htmlContent
+    }
+
+    this.store.dispatch(new UpdateTemplate(
+      templateClass
+    ))
+
+    console.log("===========================", this.editorStatus);
+    if (this.editorStatus) {
+      console.log("IT POSTED!!!!")
+      this.http.post<IResponse>(this.url, templateClass)
+        .subscribe((data) => {
+          this.status = data.success ? EStatus.SUCCESS : EStatus.FAILURE;
+          this.error_msg = data.error_msg;
+        })
+    }
   }
 }
