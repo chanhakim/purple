@@ -8,13 +8,14 @@ import { ITemplateData } from '../models/template-data';
   providedIn: 'root'
 })
 export class GetTemplateService {
-  baseUrl: string = 'assets/'
+  baseUrl: string = 'http://localhost:3000/api/single_template/'
   constructor(
     private http: HttpClient
   ) { }
 
   getTemplate(): Observable<ITemplateData> {
-    return this.http.get<ITemplateData>(this.baseUrl + 'template.json')
+    let id = "123"
+    return this.http.get<ITemplateData>(this.baseUrl + id)
       .pipe(
         catchError(this.handleError)
       )

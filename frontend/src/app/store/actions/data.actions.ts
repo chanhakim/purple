@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 import { INewsStoriesValued, IOfficialsKV } from 'src/app/models/officials';
-import { ISimpleTemplate } from "src/app/models/template-data";
+import { ISimpleTemplate, ITemplateData } from "src/app/models/template-data";
 
 export enum EDataActions {
     SetZipCode = '[DATA] Setting Zip Code',
@@ -38,7 +38,7 @@ export class SelectedNews implements Action {
 
 export class UpdateTemplate implements Action {
     public readonly type = EDataActions.UpdateTemplate;
-    constructor(public temp: ISimpleTemplate) { }
+    constructor(public temp: ITemplateData) { }
 }
 
 export type DActions = 
